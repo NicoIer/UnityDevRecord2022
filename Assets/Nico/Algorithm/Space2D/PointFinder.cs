@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Nico.Algorithm
 {
@@ -69,6 +71,26 @@ namespace Nico.Algorithm
             }
 
             return endPoints;
+        }
+        
+
+        public static Vector2Int FindClosestPoint(Vector2Int point, IEnumerable<Vector2Int> points)
+        {
+            float minDistance = float.MaxValue;
+            Vector2Int closest = Vector2Int.zero;
+            foreach (var curPoint in points)
+            {
+                if (curPoint == point)
+                    continue;
+                var distance = Vector2Int.Distance(point, curPoint);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closest = curPoint;
+                }
+            }
+
+            return closest;
         }
     }
 }
