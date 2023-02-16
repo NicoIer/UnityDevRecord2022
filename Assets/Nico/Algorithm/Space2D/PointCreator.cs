@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Nico.Algorithm
 {
@@ -58,6 +60,26 @@ namespace Nico.Algorithm
             }
 
             return corridor;
+        }
+
+        public static List<(Vector2Int, Vector2Int, float)> CreateEdges(List<Vector2Int> points)
+        {
+            List<(Vector2Int, Vector2Int, float)> edges = new List<(Vector2Int, Vector2Int, float)>();
+            for (int i = 0; i < points.Count; i++)
+            {
+                for (int j = i + 1; j < points.Count; j++)
+                {
+                    float distance = Vector2Int.Distance(points[i], points[j]);
+                    edges.Add((points[i], points[j], distance));
+                }
+            }
+            throw new NotImplementedException();
+            return edges;
+        }
+
+        public static Dictionary<Vector2Int, Vector2Int> Kruskal(List<(Vector2Int, Vector2Int, float)> edges)
+        {
+            throw new NotImplementedException();
         }
 
         public static HashSet<Vector2Int> ConnectPointsKruskal(List<Vector2Int> points)
