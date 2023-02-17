@@ -56,7 +56,7 @@ namespace DefaultNamespace
 
             floor.UnionWith(corridors);
             drawer.PaintFloorTiles(floor);
-            var walls = PointFinder.FindWallPoints(floor);
+            var walls = PointFinder.FindEdgePoints(floor, Direction2D.fourDirections);
             drawer.PaintWallTiles(walls);
         }
 
@@ -81,7 +81,7 @@ namespace DefaultNamespace
             floor.UnionWith(endRoomPoints);
 
             drawer.PaintFloorTiles(floor);
-            var walls = PointFinder.FindWallPoints(floor);
+            var walls = WallFinder.FourDirectionWall(floor);
             drawer.PaintWallTiles(walls);
         }
 

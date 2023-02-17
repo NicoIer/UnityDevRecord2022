@@ -8,39 +8,17 @@ namespace Nico.Algorithm
 {
     public static class PointFinder
     {
-        public static HashSet<Vector2Int> FindEdgePoints(HashSet<Vector2Int> points)
+        public static HashSet<Vector2Int> FindEdgePoints(HashSet<Vector2Int> points, Vector2Int[] directions)
         {
-            HashSet<Vector2Int> edgePoints = new HashSet<Vector2Int>();
-            var directions = Direction2D.directions;
+            var wallPoints = new HashSet<Vector2Int>();
             foreach (var point in points)
             {
                 foreach (var direction in directions)
                 {
-                    //检测四个方向是否有点
-                    if (!points.Contains(direction + point))
+                    var neighbor = point + direction;
+                    if (!points.Contains(neighbor))
                     {
-                        //如果有一个方向没有点，那么这个点就是边缘点
-                        edgePoints.Add(point);
-                        break;
-                    }
-                }
-            }
-
-            return edgePoints;
-        }
-
-        public static HashSet<Vector2Int> FindWallPoints(HashSet<Vector2Int> points)
-        {
-            HashSet<Vector2Int> wallPoints = new HashSet<Vector2Int>();
-            var directions = Direction2D.directions;
-            foreach (var point in points)
-            {
-                foreach (var direction in directions)
-                {
-                    //检测四个方向是否有点
-                    if (!points.Contains(direction + point))
-                    {
-                        wallPoints.Add(direction + point);
+                        wallPoints.Add(neighbor);
                     }
                 }
             }
@@ -55,7 +33,7 @@ namespace Nico.Algorithm
             foreach (var point in points)
             {
                 int count = 0;
-                foreach (var direction in Direction2D.directions)
+                foreach (var direction in Direction2D.fourDirections)
                 {
                     var neighbor = point + direction;
                     if (points.Contains(neighbor))
@@ -72,7 +50,7 @@ namespace Nico.Algorithm
 
             return endPoints;
         }
-        
+
 
         public static Vector2Int FindClosestPoint(Vector2Int point, IEnumerable<Vector2Int> points)
         {
@@ -92,5 +70,7 @@ namespace Nico.Algorithm
 
             return closest;
         }
+        
+        
     }
 }

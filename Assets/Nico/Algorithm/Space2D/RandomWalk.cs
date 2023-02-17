@@ -31,7 +31,7 @@ namespace Nico.Algorithm
             var previousPoint = startPoint;
             for (int i = 0; i < length; i++)
             {
-                var next = previousPoint + Direction2D.GetRadonmDirection();
+                var next = previousPoint + Direction2D.GetRandomDirection();
                 path.Add(next);
                 previousPoint = next;
             }
@@ -69,7 +69,7 @@ namespace Nico.Algorithm
         private static List<Vector2Int> _walk_corridor(Vector2Int startPosition, int corridorLength)
         {
             List<Vector2Int> corridor = new List<Vector2Int>() { startPosition };
-            var direction = Direction2D.GetRadonmDirection();
+            var direction = Direction2D.GetRandomDirection();
             var currentPoint = startPosition;
             for (int i = 0; i < corridorLength; i++)
             {

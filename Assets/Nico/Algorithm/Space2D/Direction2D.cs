@@ -5,14 +5,13 @@ namespace Nico.Algorithm
 {
     public static class Direction2D
     {
-        private static Vector2Int[] _directions = new Vector2Int[4]
+        public static readonly Vector2Int[] fourDirections =
         {
             Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right
         };
 
-        public static Vector2Int[] directions => _directions;
 
-        public static Vector2Int GetRadonmDirection()
+        public static Vector2Int GetRandomDirection()
         {
             var direction = Random.Range(0, 4);
             return direction switch
@@ -24,6 +23,27 @@ namespace Nico.Algorithm
                 _ => Vector2Int.zero
             };
         }
-        
+
+
+        public static readonly Vector2Int[] diagonalDirections =
+        {
+            new Vector2Int(1, 1), //right up
+            new Vector2Int(1, -1), //right down
+            new Vector2Int(-1, -1), //left down
+            new Vector2Int(-1, 1), //left up
+        };
+
+        public static readonly Vector2Int[] eightDirections =
+        {
+            Vector2Int.up,
+            Vector2Int.down,
+            Vector2Int.left,
+            Vector2Int.right,
+            new Vector2Int(-1, 1), //left up
+            new Vector2Int(1, 1), //right up
+            new Vector2Int(-1, -1), //left down
+            new Vector2Int(1, -1), //right down
+            
+        };
     }
 }
