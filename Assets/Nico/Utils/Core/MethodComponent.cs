@@ -1,6 +1,6 @@
 namespace Nico.Core
 {
-    public class Controller
+    public class MethodComponent
     {
         
     }

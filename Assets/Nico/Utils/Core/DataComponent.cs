@@ -2,7 +2,7 @@
 
 namespace Nico.Abstract
 {
-    public abstract class Data : ScriptableObject
+    public class DataComponent 
     {
         
     }

@@ -43,7 +43,15 @@ namespace Nico.Algorithm
             new Vector2Int(1, 1), //right up
             new Vector2Int(-1, -1), //left down
             new Vector2Int(1, -1), //right down
-            
         };
+
+        public static Vector2Int right => Vector2Int.right;
+        public static Vector2Int left => Vector2Int.left;
+        public static Vector2Int up => Vector2Int.up;
+        public static Vector2Int down => Vector2Int.down;
+        public static Vector2Int upRight => new Vector2Int(1, 1);
+        public static Vector2Int downRight => new Vector2Int(1, -1);
+        public static Vector2Int downLeft => new Vector2Int(-1, -1);
+        public static Vector2Int upLeft => new Vector2Int(-1, 1);
     }
 }

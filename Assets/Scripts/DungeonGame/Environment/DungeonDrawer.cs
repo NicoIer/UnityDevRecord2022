@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DungeonGame.Core;
 using DungeonGame.Environment.Core;
@@ -12,7 +13,26 @@ namespace DungeonGame
         public Tilemap wallTilemap;
         public TileBase floorTile;
         public TileBase corridorTile;
-        public TileBase wallTile;
+        public TileBase fullWallTile;
+
+        #region 四个方向
+
+        public TileBase topWallTile;
+        public TileBase bottomWallTile;
+        public TileBase sideRightWallTile;
+        public TileBase sideLeftWallTile;
+
+        #endregion
+
+        #region 四个角角
+
+        public TileBase topLeftWallTile;
+        public TileBase topRightWallTile;
+        public TileBase bottomLeftWallTile;
+        public TileBase bottomRightWallTile;
+
+        #endregion
+
 
         public void Clear()
         {
@@ -27,6 +47,7 @@ namespace DungeonGame
                 DrawRoom(room);
             }
         }
+
         public void DrawRoom(Room room)
         {
             foreach (var point in room.floorPoints)
@@ -42,6 +63,7 @@ namespace DungeonGame
                 DrawCorridor(corridor);
             }
         }
+
         public void DrawCorridor(Corridor corridor)
         {
             foreach (var point in corridor.path)
@@ -49,11 +71,53 @@ namespace DungeonGame
                 _paint_single_tile(floorTilemap, corridorTile, point);
             }
         }
+
         public void DrawWalls(List<Wall> walls)
         {
-            foreach(Wall wall in walls)
+            foreach (Wall wall in walls)
             {
-                _paint_single_tile(wallTilemap, wallTile, wall.position);
+                TileBase tile = null;
+                switch (wall.type)
+                {
+                    case WallType.SideRight:
+                        tile = sideRightWallTile;
+                        break;
+                    case WallType.SideLeft:
+                        tile = sideLeftWallTile;
+                        break;
+                    case WallType.Full:
+                        tile = fullWallTile;
+                        break;
+                    case WallType.SideTop:
+                        tile = topWallTile;
+                        break;
+                    case WallType.SideBottom:
+                        tile = bottomWallTile;
+                        break;
+                    case WallType.TopRight:
+                        tile = topRightWallTile;
+                        break;
+                    case WallType.TopLeft:
+                        tile = topLeftWallTile;
+                        break;
+                    case WallType.BottomRight:
+                        tile = bottomRightWallTile;
+                        break;
+                    case WallType.BottomLeft:
+                        tile = bottomLeftWallTile;
+                        break;
+                    case WallType.None:
+                        break;
+                }
+
+                if (tile != null)
+                {
+                    _paint_single_tile(wallTilemap, tile, wall.position);
+                }
+                else
+                {
+                    _paint_single_tile(wallTilemap, fullWallTile, wall.position);
+                }
             }
         }
 
@@ -62,7 +126,5 @@ namespace DungeonGame
             var tilePosition = tilemap.WorldToCell((Vector3Int)position);
             tilemap.SetTile(tilePosition, tileBase);
         }
-
-
     }
 }
