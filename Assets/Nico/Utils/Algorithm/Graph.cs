@@ -22,66 +22,37 @@ namespace Nico.Algorithm
             return edges;
         }
 
-        public static List<(T, T, float)> CalEdges<T>(List<T> points) where T : IDistance
+        public static List<(T, T, float)> CalEdges<T>(List<T> points, Func<T, T, float> distanceFunc)
         {
             List<(T, T, float)> edges = new List<(T, T, float)>();
             for (int i = 0; i < points.Count; i++)
             {
                 for (int j = i + 1; j < points.Count; j++)
                 {
-                    float distance = Distance.Cal(points[i], points[j]);
+                    float distance = distanceFunc(points[i], points[j]);
                     edges.Add((points[i], points[j], distance));
                 }
             }
 
             return edges;
         }
-
-        public static Dictionary<T, T> Kruskal<T>(List<T> points) where T : IDistance
+        
+        public static Dictionary<T, T> Kruskal<T>(List<T> points, Func<T, T, float> distanceFunc)
         {
-            var edges = CalEdges(points);
+            var edges = CalEdges(points, distanceFunc);
             edges.Sort((a, b) => a.Item3.CompareTo(b.Item3));
             Dictionary<T, T> parentDict = new Dictionary<T, T>();
             foreach (var point in points)
             {
                 parentDict[point] = point;
             }
-            // foreach (var edge in edges)
-            // {
-            //     Vector2Int root1 = Find(edge.Item1, parentDict);
-            //     Vector2Int root2 = Find(edge.Item2, parentDict);
-            //     if (root1 != root2)
-            //     {
-            //         Union(root1, root2, parentDict);
-            //         result.Add(edge.Item1, edge.Item2);
-            //     }
-            // }
-            //
-            // return result;
-            throw new NotImplementedException();
-        }
 
-        /// <summary>
-        /// 最小生成树算法
-        /// </summary>
-        /// <param name="points"></param>
-        /// <returns>哪个点和哪个点之间进行连接</returns>
-        public static Dictionary<Vector2Int, Vector2Int> Kruskal(List<Vector2Int> points)
-        {
-            var edges = Graph.CreateEdges(points);
-            edges.Sort((a, b) => a.Item3.CompareTo(b.Item3));
-            Dictionary<Vector2Int, Vector2Int> parentDict = new Dictionary<Vector2Int, Vector2Int>();
-            foreach (var point in points)
-            {
-                parentDict[point] = point;
-            }
-
-            Dictionary<Vector2Int, Vector2Int> result = new Dictionary<Vector2Int, Vector2Int>();
+            Dictionary<T, T> result = new Dictionary<T, T>();
             foreach (var edge in edges)
             {
-                Vector2Int root1 = Find(edge.Item1, parentDict);
-                Vector2Int root2 = Find(edge.Item2, parentDict);
-                if (root1 != root2)
+                T root1 = Find(edge.Item1, parentDict);
+                T root2 = Find(edge.Item2, parentDict);
+                if (!root1.Equals(root2))
                 {
                     Union(root1, root2, parentDict);
                     result.Add(edge.Item1, edge.Item2);
@@ -91,14 +62,14 @@ namespace Nico.Algorithm
             return result;
         }
 
-        private static void Union(Vector2Int root1, Vector2Int root2, Dictionary<Vector2Int, Vector2Int> parentDict)
+        private static void Union<T>(T root1, T root2, Dictionary<T, T> parentDict)
         {
             parentDict[root2] = root1;
         }
 
-        private static Vector2Int Find(Vector2Int point, Dictionary<Vector2Int, Vector2Int> parentDict)
+        private static T Find<T>(T point, Dictionary<T, T> parentDict)
         {
-            if (parentDict[point] != point)
+            if (!parentDict[point].Equals(point))
             {
                 parentDict[point] = Find(parentDict[point], parentDict);
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Nico.Algorithm;
 using UnityEngine;
 
-namespace DugeonGame
+namespace DungeonGame
 {
     public enum WallType
     {

@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace DugeonGame
+namespace DungeonGame
 {
     public class TilemapDrawer : MonoBehaviour
     {

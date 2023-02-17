@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DugeonGame.Core
+namespace DungeonGame.Core
 {
     public enum FloorType
     {

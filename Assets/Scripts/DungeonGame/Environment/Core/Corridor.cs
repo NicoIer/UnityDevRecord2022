@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using DugeonGame.Core;
+using DungeonGame.Core;
 using UnityEngine;
 
 namespace DungeonGame.Environment.Core
