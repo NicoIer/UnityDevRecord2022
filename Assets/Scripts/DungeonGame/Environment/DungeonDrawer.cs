@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DungeonGame.Core;
 using DungeonGame.Environment.Core;
 using UnityEngine;
@@ -19,6 +20,13 @@ namespace DungeonGame
             wallTilemap.ClearAllTiles();
         }
 
+        public void DrawRooms(IEnumerable<Room> rooms)
+        {
+            foreach (var room in rooms)
+            {
+                DrawRoom(room);
+            }
+        }
         public void DrawRoom(Room room)
         {
             foreach (var point in room.floorPoints)
@@ -27,7 +35,13 @@ namespace DungeonGame
             }
         }
 
-
+        public void DrawCorridors(IEnumerable<Corridor> corridors)
+        {
+            foreach (var corridor in corridors)
+            {
+                DrawCorridor(corridor);
+            }
+        }
         public void DrawCorridor(Corridor corridor)
         {
             foreach (var point in corridor.path)

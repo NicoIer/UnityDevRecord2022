@@ -34,35 +34,15 @@ namespace DungeonGame
             //生成房间
             var rooms = RoomGenerator.BoundsGenerate(roomBounds, config);
             print(rooms.Count);
-            //生成中心点->房间索引
-            var roomCenters = rooms.Select(_ => _.center).ToList();
-            //然后使用最小生成树获取房间中心点之间的最优连接信息
-            var centerConnectInfos = Graph.MinimumSpanningTree(roomCenters);
-            print(centerConnectInfos.Count);
-            //通过房间中心点->房间索引,获取房间连接信息
-            List<(Room, Room)> roomConnectionInfo = new List<(Room, Room)>();
-            foreach (var (c1, c2) in centerConnectInfos)
-            {
-                var r1 = rooms.Find(_ => _.center == c1);
-                var r2 = rooms.Find(_ => _.center == c2);
-                roomConnectionInfo.Add((r1, r2));
-            }
-
-            print(roomConnectionInfo.Count);
+            //最小生成树获取房间中心点之间的最优连接信息
+            var centerConnectInfos = Graph.MinimumSpanningTree(rooms, Room.Distance);
             //最后根据房间连接信息,生成走廊
-            var corridors = CorridorGenerator.GenerateCorridor(roomConnectionInfo);
-            print(corridors.Count);
-            //绘制房间
-            foreach (var room in rooms)
-            {
-                drawer.DrawRoom(room);
-            }
-
+            var corridors = CorridorGenerator.GenerateCorridor(centerConnectInfos);
             //绘制走廊
-            foreach (var corridor in corridors)
-            {
-                drawer.DrawCorridor(corridor);
-            }
+            drawer.DrawCorridors(corridors);
+            //绘制房间
+            drawer.DrawRooms(rooms);
+            
         }
 
         [Button("Clear")]

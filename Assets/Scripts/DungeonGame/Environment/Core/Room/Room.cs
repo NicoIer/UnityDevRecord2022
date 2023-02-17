@@ -31,5 +31,6 @@ namespace DungeonGame.Core
             return Nico.Algorithm.Distance.Manhattan(a.center, b.center);
         }
         
+        
     }
 }
