@@ -33,15 +33,20 @@ namespace DungeonGame
             var roomBounds = SpaceSplit.RandomBinarySpacePartitioning(space, minRoomWidth, minRoomHeight);
             //生成房间
             var rooms = RoomGenerator.BoundsGenerate(roomBounds, config);
-            print(rooms.Count);
             //最小生成树获取房间中心点之间的最优连接信息
-            var centerConnectInfos = Graph.MinimumSpanningTree(rooms, Room.Distance);
+            var connectRooms = Graph.MinimumSpanningTree(rooms, Room.Distance);
+            //创建房间之间的连接信息
+            RoomGenerator.ConnectRooms(connectRooms);
             //最后根据房间连接信息,生成走廊
-            var corridors = CorridorGenerator.GenerateCorridor(centerConnectInfos);
+            var corridors = CorridorGenerator.GenerateCorridor(connectRooms);
+            //根据房间和走廊信息 生成墙壁
+            var walls = WallGenerator.GenerateWall(rooms, corridors);
             //绘制走廊
             drawer.DrawCorridors(corridors);
             //绘制房间
             drawer.DrawRooms(rooms);
+            //绘制墙壁
+            drawer.DrawWalls(walls);
             
         }
 

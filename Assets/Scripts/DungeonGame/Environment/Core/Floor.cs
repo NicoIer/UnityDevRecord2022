@@ -9,6 +9,5 @@ namespace DungeonGame.Core
     public class Floor
     {
         public FloorType type;
-        public Vector2Int position;
     }
 }

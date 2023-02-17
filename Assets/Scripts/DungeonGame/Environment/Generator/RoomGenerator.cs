@@ -36,8 +36,14 @@ namespace DungeonGame.Generator
 
             return rooms;
         }
-        
-        
-        
+
+
+        public static void ConnectRooms(List<(Room, Room)> connectRooms)
+        {
+            foreach (var (ra, rb) in connectRooms)
+            {
+                Room.AddNeighbor(ra, rb);
+            }
+        }
     }
 }

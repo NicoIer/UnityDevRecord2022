@@ -49,12 +49,20 @@ namespace DungeonGame
                 _paint_single_tile(floorTilemap, corridorTile, point);
             }
         }
-
+        public void DrawWalls(List<Wall> walls)
+        {
+            foreach(Wall wall in walls)
+            {
+                _paint_single_tile(wallTilemap, wallTile, wall.position);
+            }
+        }
 
         private static void _paint_single_tile(Tilemap tilemap, TileBase tileBase, Vector2Int position)
         {
             var tilePosition = tilemap.WorldToCell((Vector3Int)position);
             tilemap.SetTile(tilePosition, tileBase);
         }
+
+
     }
 }
