@@ -19,7 +19,7 @@ namespace RPG
             var move = owner.input.Move;
             if (move != Vector2.zero)
             {
-                machine.Change<MoveState>();
+                machine.Change<WalkState>();
             }
         }
 
@@ -29,12 +29,12 @@ namespace RPG
 
         public void Exit()
         {
-            owner.animator.SetBool(animParam,false);
+            owner.ac.SetBool(animParam,false);
         }
 
         public void Enter()
         {
-            owner.animator.SetBool(animParam,true);
+            owner.ac.SetBool(animParam,true);
         }
 
         public void Enable()

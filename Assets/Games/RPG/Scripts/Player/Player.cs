@@ -11,23 +11,19 @@ namespace RPG
     {
         [field: SerializeField] public PlayerSetting setting { get; private set; }
 
-        public float collisionOffsett = 0.05f;
-        public ContactFilter2D contactFilter;
-        public List<RaycastHit2D> raycastHit2Ds = new List<RaycastHit2D>();
-
         #region Components
 
         public Rigidbody2D rb { get; private set; }
-        public Collider2D collider { get; private set; }
-        public Animator animator { get; private set; }
+        public Collider2D col { get; private set; }
+        public Animator ac { get; private set; }
 
         #endregion
 
 
         public PlayerInput input { get; private set; }
 
-        public PlayerAttribute attribute { get; private set; }
-        private PlayerController controller { get; set; }
+        [field: SerializeField] public PlayerAttribute attribute { get; private set; }
+        [field: SerializeField] public PlayerController controller { get; private set; }
 
         private readonly List<IController<Player>> components = new();
 
@@ -37,22 +33,24 @@ namespace RPG
         {
             _get_components();
             _init_controller();
-            attribute = new PlayerAttribute(this);
+            
             input = new PlayerInput();
         }
 
         private void _get_components()
         {
             rb = GetComponent<Rigidbody2D>();
-            collider = GetComponent<Collider2D>();
-            animator = GetComponent<Animator>();
+            col = GetComponent<Collider2D>();
+            ac = GetComponent<Animator>();
         }
 
         private void _init_controller()
         {
+            attribute = new PlayerAttribute(this);
             controller = new PlayerController(this);
-
+            components.Add(attribute);
             components.Add(controller);
+            
         }
 
         private void Start()

@@ -21,7 +21,7 @@ namespace RPG
         public void Start()
         {
             states.TryAdd(typeof(IdleState), new IdleState(owner,this,owner.setting.animIdle));
-            states.TryAdd(typeof(MoveState), new MoveState(owner, this,owner.setting.animMove));
+            states.TryAdd(typeof(WalkState), new WalkState(owner, this,owner.setting.animWalk));
             
             cur = states[typeof(IdleState)];
         }

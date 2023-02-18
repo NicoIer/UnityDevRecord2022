@@ -9,6 +9,7 @@ namespace RPG.Setting
         public float xSpeed;
         public float ySpeed;
         public string animIdle = "idle";
-        public string animMove = "move";
+        public string animWalk = "walk";
+        public  string facing = "facing";
     }
 }

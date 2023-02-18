@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Nico.Algorithm
 {
+    public enum Direction2DEnum
+    {
+        Right,Left,Up,Down
+    }
     public static class Direction2D
     {
         public static readonly Vector2Int[] fourDirections =

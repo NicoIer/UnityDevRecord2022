@@ -1,22 +1,27 @@
 ﻿using System.Linq;
+using Nico.Algorithm;
 using Nico.Utils.Core.StateMachine;
 using RPG.Setting;
 using UnityEngine;
 
 namespace RPG
 {
-    public class MoveState : IState<Player>
+    public class WalkState : IState<Player>
     {
         public Player owner { get; set; }
         private PlayerSetting setting => owner.setting;
         public IStateMachine<Player> machine { get; set; }
         private readonly int animParam;
-        public MoveState(Player owner,IStateMachine<Player> machine,string animParam)
+
+        private Vector2 move => owner.input.Move;
+
+        public WalkState(Player owner, IStateMachine<Player> machine, string animParam)
         {
             this.owner = owner;
             this.machine = machine;
             this.animParam = Animator.StringToHash(animParam);
         }
+
         public void Enable()
         {
         }
@@ -36,13 +41,10 @@ namespace RPG
 
         public void FixedUpdate()
         {
-            var move = owner.input.Move;
             if (move != Vector2.zero)
             {
-                // int count = owner.rb.Cast(move, owner.contactFilter, owner.raycastHit2Ds, owner.collisionOffsett);
-                var speed = new Vector2(move.x * setting.xSpeed, move.y * setting.ySpeed);
-                Debug.DrawRay(owner.rb.position, move);
-                owner.rb.MovePosition(owner.rb.position + speed * Time.fixedDeltaTime);
+                owner.attribute.UpdateFacing();
+                _apply_velocity();
             }
             else
             {
@@ -53,12 +55,20 @@ namespace RPG
         public void Exit()
         {
             owner.rb.velocity = Vector2.zero;
-            owner.animator.SetBool(animParam,false);
+            owner.ac.SetBool(animParam, false);
         }
 
         public void Enter()
         {
-            owner.animator.SetBool(animParam,true);
+            owner.attribute.UpdateFacing();
+            owner.ac.SetBool(animParam, true);
+        }
+
+        private void _apply_velocity()
+        {
+            Debug.DrawRay(owner.rb.position, move);
+            var speed = new Vector2(move.x * setting.xSpeed, move.y * setting.ySpeed);
+            owner.rb.MovePosition(owner.rb.position + speed * Time.fixedDeltaTime);
         }
     }
 }
