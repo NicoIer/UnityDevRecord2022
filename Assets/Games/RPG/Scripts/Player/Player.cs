@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Nico.Utils.Core;
 using RPG.Setting;
 using Sirenix.OdinInspector;
@@ -8,9 +9,23 @@ namespace RPG
 {
     public class Player : MonoBehaviour
     {
+        [field: SerializeField] public PlayerSetting setting { get; private set; }
+
+        public float collisionOffsett = 0.05f;
+        public ContactFilter2D contactFilter;
+        public List<RaycastHit2D> raycastHit2Ds = new List<RaycastHit2D>();
+
+        #region Components
+
         public Rigidbody2D rb { get; private set; }
+        public Collider2D collider { get; private set; }
+        public Animator animator { get; private set; }
+
+        #endregion
+
+
         public PlayerInput input { get; private set; }
-        [ShowInInspector] public PlayerSetting setting { get; private set; }
+
         public PlayerAttribute attribute { get; private set; }
         private PlayerController controller { get; set; }
 
@@ -21,7 +36,7 @@ namespace RPG
         private void Awake()
         {
             _get_components();
-            _init_cotroller();
+            _init_controller();
             attribute = new PlayerAttribute(this);
             input = new PlayerInput();
         }
@@ -29,9 +44,11 @@ namespace RPG
         private void _get_components()
         {
             rb = GetComponent<Rigidbody2D>();
+            collider = GetComponent<Collider2D>();
+            animator = GetComponent<Animator>();
         }
 
-        private void _init_cotroller()
+        private void _init_controller()
         {
             controller = new PlayerController(this);
 
@@ -79,6 +96,47 @@ namespace RPG
                 component.Disable();
             }
         }
+
+        #endregion
+
+        #region Event
+
+        #region Collision2D
+
+        public Action<Collision2D> collisionEnter2D;
+        public Action<Collision2D> collisionExit2D;
+        public Action<Collision2D> collisionStay2D;
+
+        public Action<Collider2D> triggerEnter2D;
+        public Action<Collider2D> triggerExit2D;
+
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            collisionEnter2D?.Invoke(col);
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            collisionExit2D?.Invoke(other);
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            collisionStay2D?.Invoke(collision);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            triggerEnter2D?.Invoke(other);
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            triggerExit2D?.Invoke(other);
+        }
+
+        #endregion
 
         #endregion
     }

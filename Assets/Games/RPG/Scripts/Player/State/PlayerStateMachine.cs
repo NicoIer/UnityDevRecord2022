@@ -20,8 +20,8 @@ namespace RPG
 
         public void Start()
         {
-            states.TryAdd(typeof(IdleState), new IdleState(owner, this));
-            states.TryAdd(typeof(MoveState), new MoveState(owner, this));
+            states.TryAdd(typeof(IdleState), new IdleState(owner,this,owner.setting.animIdle));
+            states.TryAdd(typeof(MoveState), new MoveState(owner, this,owner.setting.animMove));
             
             cur = states[typeof(IdleState)];
         }
