@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace RPG
 {
+    /// <summary>
+    /// 这里是角色的属性 但是用Controller不是很好 ToDo 准备重构 
+    /// </summary>
     [Serializable]
     public class PlayerAttribute : IController<Player>
     {
@@ -35,11 +38,14 @@ namespace RPG
         {
             velocity = new Vector2(owner.input.Move.x * setting.xSpeed, owner.input.Move.y * setting.ySpeed);
             state = owner.stateMachine.cur.GetType().Name;
+            if (owner.stateMachine.cur.GetType() != typeof(AttackState))
+            {//攻击的时候不能改变朝向
+                UpdateFacing();
+            }
         }
 
         public void FixedUpdate()
         {
-            UpdateFacing();
         }
 
         public void UpdateFacing()

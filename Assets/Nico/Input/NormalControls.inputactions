@@ -157,6 +157,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a231b9be-75b3-4305-92c7-749144e94ca5",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "26cf0a46-0062-4bd7-ac3e-e3aba9d96d17",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
