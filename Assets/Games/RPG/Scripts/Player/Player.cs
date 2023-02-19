@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Nico.Utils.Core;
+using RPG.Controller;
 using RPG.Setting;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -22,15 +23,15 @@ namespace RPG
 
         #region Controller
 
-        [field: SerializeField] public PlayerAttribute attribute { get; private set; }
         [field: SerializeField] public PlayerStateMachine stateMachine { get; private set; }
-
+        [field: SerializeField] public PlayerAttributeController attributeController { get; private set; }
         private readonly List<IController<Player>> controllers = new();
 
         #endregion
 
         #region Components
 
+        [field: SerializeField] public PlayerAttribute attribute { get; private set; }
         public PlayerInput input { get; private set; }
         private readonly List<IComponent<Player>> components = new();
 
@@ -42,7 +43,7 @@ namespace RPG
         private void Awake()
         {
             _get_mono_components();
-            _get_components();
+            _init_components();
             _init_controller();
         }
 
@@ -53,7 +54,7 @@ namespace RPG
             ac = GetComponent<Animator>();
         }
 
-        private void _get_components()
+        private void _init_components()
         {
             input = new PlayerInput(this);
             components.Add(input);
@@ -61,9 +62,9 @@ namespace RPG
 
         private void _init_controller()
         {
-            attribute = new PlayerAttribute(this);
+            attributeController = new PlayerAttributeController(this, attribute);
             stateMachine = new PlayerStateMachine(this);
-            controllers.Add(attribute);
+            controllers.Add(attributeController);
             controllers.Add(stateMachine);
         }
 
