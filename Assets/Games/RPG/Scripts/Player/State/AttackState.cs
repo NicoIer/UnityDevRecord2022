@@ -18,12 +18,14 @@ namespace RPG
 
         public void Update()
         {
-            throw new System.NotImplementedException();
+            var stateInfo = owner.ac.GetCurrentAnimatorStateInfo(0);
+            if(stateInfo.normalizedTime >= 1)
+                machine.Change<IdleState>();
         }
 
         public void FixedUpdate()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void Exit()

@@ -362,6 +362,37 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &998021959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 998021960}
+  m_Layer: 0
+  m_Name: SwordHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &998021960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998021959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1331408398}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1029585660
 GameObject:
   m_ObjectHideFlags: 0
@@ -10938,10 +10969,14 @@ PrefabInstance:
     - target: {fileID: 7187744957338350846, guid: b04fd997f117c7e41b2a63065b65f326,
         type: 3}
       propertyPath: m_Name
-      value: player
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4893223410436215546, guid: b04fd997f117c7e41b2a63065b65f326,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 998021960}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b04fd997f117c7e41b2a63065b65f326, type: 3}

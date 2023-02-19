@@ -33,9 +33,8 @@ namespace RPG
 
         public void Update()
         {
-            velocity = owner.rb.velocity;
-            state = owner.controller.stateMachine.cur.GetType().Name;
-            
+            velocity = new Vector2(owner.input.Move.x * setting.xSpeed, owner.input.Move.y * setting.ySpeed);
+            state = owner.stateMachine.cur.GetType().Name;
         }
 
         public void FixedUpdate()
@@ -49,10 +48,18 @@ namespace RPG
             if (move == Vector2.zero) return;
             else
             {
+                if (move.x > 0)
+                    facing = Direction2DEnum.Right;
+                else if (move.x < 0)
+                    facing = Direction2DEnum.Left;
+                else if (move.y > 0)
+                    facing = Direction2DEnum.Up;
+                else if (move.y < 0)
+                    facing = Direction2DEnum.Down;
+                
                 ac.SetFloat(xCode, move.x);
                 ac.SetFloat(yCode, move.y);
             }
-
         }
 
         public void Enable()

@@ -11,7 +11,7 @@ namespace RPG
     {
         [field: SerializeField] public PlayerSetting setting { get; private set; }
 
-        #region Components
+        #region Mono Components
 
         public Rigidbody2D rb { get; private set; }
         public Collider2D col { get; private set; }
@@ -20,51 +20,64 @@ namespace RPG
         #endregion
 
 
-        public PlayerInput input { get; private set; }
+        #region Controller
 
         [field: SerializeField] public PlayerAttribute attribute { get; private set; }
-        [field: SerializeField] public PlayerController controller { get; private set; }
+        [field: SerializeField] public PlayerStateMachine stateMachine { get; private set; }
 
-        private readonly List<IController<Player>> components = new();
-        //ToDo 考虑中的组件字典
-        private readonly Dictionary<Type, IController<Player>> componentDict = new();
+        private readonly List<IController<Player>> controllers = new();
+
+        #endregion
+
+        #region Components
+
+        public PlayerInput input { get; private set; }
+        private readonly List<IComponent<Player>> components = new();
+
+        #endregion
+
 
         #region Life Time
 
         private void Awake()
         {
+            _get_mono_components();
             _get_components();
             _init_controller();
-
-            input = new PlayerInput();
         }
 
-        private void _get_components()
+        private void _get_mono_components()
         {
             rb = GetComponent<Rigidbody2D>();
             col = GetComponent<Collider2D>();
             ac = GetComponent<Animator>();
         }
 
+        private void _get_components()
+        {
+            input = new PlayerInput(this);
+            components.Add(input);
+        }
+
         private void _init_controller()
         {
             attribute = new PlayerAttribute(this);
-            controller = new PlayerController(this);
-            components.Add(attribute);
-            components.Add(controller);
+            stateMachine = new PlayerStateMachine(this);
+            controllers.Add(attribute);
+            controllers.Add(stateMachine);
         }
 
         private void Start()
         {
-            foreach (var component in components)
+            foreach (var controller in controllers)
             {
-                component.Start();
+                controller.Start();
             }
         }
 
         private void Update()
         {
-            foreach (var component in components)
+            foreach (var component in controllers)
             {
                 component.Update();
             }
@@ -72,7 +85,7 @@ namespace RPG
 
         private void FixedUpdate()
         {
-            foreach (var component in components)
+            foreach (var component in controllers)
             {
                 component.FixedUpdate();
             }
@@ -80,8 +93,12 @@ namespace RPG
 
         private void OnEnable()
         {
-            input.Enable();
             foreach (var component in components)
+            {
+                component.Enable();
+            }
+
+            foreach (var component in controllers)
             {
                 component.Enable();
             }
@@ -89,8 +106,12 @@ namespace RPG
 
         private void OnDisable()
         {
-            input.Disable();
             foreach (var component in components)
+            {
+                component.Disable();
+            }
+
+            foreach (var component in controllers)
             {
                 component.Disable();
             }

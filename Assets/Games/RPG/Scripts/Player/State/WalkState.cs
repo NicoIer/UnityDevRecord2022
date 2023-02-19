@@ -14,6 +14,8 @@ namespace RPG
         private readonly int animParam;
 
         private Vector2 move => owner.input.Move;
+        private bool run => owner.input.Run;
+        private bool attack => owner.input.Attack;
 
         public WalkState(Player owner, IStateMachine<Player> machine, string animParam)
         {
@@ -21,23 +23,31 @@ namespace RPG
             this.machine = machine;
             this.animParam = Animator.StringToHash(animParam);
         }
-        
+
 
         public void Update()
         {
+            if (move == Vector2.zero)
+            {
+                machine.Change<IdleState>();
+                return;
+            }
+
+            if (attack)
+            {
+                machine.Change<AttackState>();
+                return;
+            }
+
+            // if (run)
+            // {//按下跑步键
+            //     return;
+            // }
         }
 
         public void FixedUpdate()
         {
-            if (move != Vector2.zero)
-            {
-                // owner.attribute.UpdateFacing();
-                _apply_velocity();
-            }
-            else
-            {
-                machine.Change<IdleState>();
-            }
+            _apply_velocity();
         }
 
         public void Exit()
@@ -48,7 +58,6 @@ namespace RPG
 
         public void Enter()
         {
-            // owner.attribute.UpdateFacing();
             owner.ac.SetBool(animParam, true);
         }
 

@@ -8,6 +8,9 @@ namespace RPG
         public Player owner { get; set; }
         public IStateMachine<Player> machine { get; set; }
         private readonly int animParam;
+        private Vector2 move => owner.input.Move;
+        private bool run => owner.input.Run;
+        private bool attack => owner.input.Attack;
         public IdleState(Player owner,IStateMachine<Player> machine,string animParam)
         {
             this.owner = owner;
@@ -16,10 +19,16 @@ namespace RPG
         }
         public void Update()
         {
-            var move = owner.input.Move;
+            if (attack)
+            {
+                machine.Change<AttackState>();
+                return;
+            }
+            
             if (move != Vector2.zero)
             {
                 machine.Change<WalkState>();
+                return;
             }
         }
 

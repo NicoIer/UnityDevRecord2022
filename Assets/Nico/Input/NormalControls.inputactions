@@ -2,7 +2,7 @@
     "name": "NormalControls",
     "maps": [
         {
-            "name": "Input",
+            "name": "Player",
             "id": "f52437a3-93ca-4824-8a6d-a310c43c7347",
             "actions": [
                 {
@@ -13,6 +13,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "NormalAttack",
+                    "type": "Button",
+                    "id": "fe3d1efc-90e4-454e-820f-3efbc819aeff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "eaa52a59-bc97-4459-8b13-aeef529ace07",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -33,7 +51,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "Normal",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -44,7 +62,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "Normal",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -55,7 +73,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "Normal",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -66,18 +84,106 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "Normal",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "1d250f37-1d41-4b33-afcf-8128be917315",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "199ed1d5-52ad-45ea-b1a6-1793f8925e38",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "bb67be40-a539-4781-85c5-e79379da3916",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "39767f64-247e-4da6-b9d0-21377dfead43",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "20b428f6-d0ca-4ba3-8cfa-99f299f7b556",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "89078260-44a3-41cf-98b3-2933aea364e8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal",
+                    "action": "NormalAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26cf0a46-0062-4bd7-ac3e-e3aba9d96d17",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6517deb5-71c5-4c05-91dd-327e478bdfc6",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
     ],
     "controlSchemes": [
         {
-            "name": "KeyBoard",
-            "bindingGroup": "KeyBoard",
+            "name": "Normal",
+            "bindingGroup": "Normal",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
@@ -87,6 +193,11 @@
                 {
                     "devicePath": "<Mouse>",
                     "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]

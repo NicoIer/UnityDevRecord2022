@@ -3,12 +3,15 @@ using UnityEngine;
 
 namespace RPG
 {
-    public class PlayerInput : ICoreComponent
+    public class PlayerInput : IComponent<Player>
     {
+        public Player owner { get; set; }
         private readonly NormalControls oper;
-        public Vector2 Move => oper.Input.Move.ReadValue<Vector2>();
+        public Vector2 Move => oper.Player.Move.ReadValue<Vector2>();
+        public bool Run => oper.Player.Run.WasPerformedThisFrame();
+        public bool Attack => oper.Player.NormalAttack.WasPressedThisFrame();
 
-        public PlayerInput()
+        public PlayerInput(Player owner)
         {
             oper = new NormalControls();
         }
@@ -17,13 +20,13 @@ namespace RPG
 
         public void Enable()
         {
-            oper.Input.Enable();
+            oper.Player.Enable();
         }
 
 
         public void Disable()
         {
-            oper.Input.Disable();
+            oper.Player.Disable();
         }
 
         #endregion
