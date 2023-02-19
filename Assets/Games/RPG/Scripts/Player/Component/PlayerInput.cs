@@ -13,6 +13,7 @@ namespace RPG
 
         public PlayerInput(Player owner)
         {
+            this.owner = owner;
             oper = new NormalControls();
         }
 

@@ -21,11 +21,11 @@ namespace RPG.Controller
             this.attribute = attribute;
         }
 
-        public void Enable()
+        public void OnEnable()
         {
         }
 
-        public void Disable()
+        public void OnDisable()
         {
         }
 

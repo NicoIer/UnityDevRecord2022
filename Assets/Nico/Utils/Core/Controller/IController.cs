@@ -7,8 +7,8 @@
     public interface IController<T>
     {
         T owner { get; }
-        void Enable();
-        void Disable();
+        void OnEnable();
+        void OnDisable();
         void Start();
         void Update();
         void FixedUpdate();
