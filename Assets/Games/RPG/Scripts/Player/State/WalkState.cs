@@ -21,15 +21,7 @@ namespace RPG
             this.machine = machine;
             this.animParam = Animator.StringToHash(animParam);
         }
-
-        public void Enable()
-        {
-        }
-
-        public void Disable()
-        {
-        }
-
+        
 
         public void Update()
         {

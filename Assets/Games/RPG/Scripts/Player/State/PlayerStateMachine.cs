@@ -22,7 +22,9 @@ namespace RPG
         {
             states.TryAdd(typeof(IdleState), new IdleState(owner,this,owner.setting.animIdle));
             states.TryAdd(typeof(WalkState), new WalkState(owner, this,owner.setting.animWalk));
-            
+            states.TryAdd(typeof(AttackState), new AttackState(owner, this,owner.setting.animAttack));
+            // states.TryAdd(typeof(RunState), new RunState(owner, this,owner.setting.animRun));
+            //ToDo 期望这里可以自动添加所有的状态
             cur = states[typeof(IdleState)];
         }
 

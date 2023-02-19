@@ -3,41 +3,37 @@ using UnityEngine;
 
 namespace RPG
 {
-    public class IdleState : IState<Player>
+    public class AttackState : IState<Player>
     {
         public Player owner { get; set; }
         public IStateMachine<Player> machine { get; set; }
         private readonly int animParam;
-        public IdleState(Player owner,IStateMachine<Player> machine,string animParam)
+
+        public AttackState(Player owner, IStateMachine<Player> machine, string animParam)
         {
             this.owner = owner;
             this.machine = machine;
             this.animParam = Animator.StringToHash(animParam);
         }
+
         public void Update()
         {
-            var move = owner.input.Move;
-            if (move != Vector2.zero)
-            {
-                machine.Change<WalkState>();
-            }
+            throw new System.NotImplementedException();
         }
 
         public void FixedUpdate()
         {
+            throw new System.NotImplementedException();
         }
 
         public void Exit()
         {
-            owner.ac.SetBool(animParam,false);
+            owner.ac.SetBool(animParam, false);
         }
 
         public void Enter()
         {
-            owner.ac.SetBool(animParam,true);
+            owner.ac.SetBool(animParam, true);
         }
-        
-
-
     }
 }

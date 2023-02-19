@@ -26,6 +26,8 @@ namespace RPG
         [field: SerializeField] public PlayerController controller { get; private set; }
 
         private readonly List<IController<Player>> components = new();
+        //ToDo 考虑中的组件字典
+        private readonly Dictionary<Type, IController<Player>> componentDict = new();
 
         #region Life Time
 
@@ -33,7 +35,7 @@ namespace RPG
         {
             _get_components();
             _init_controller();
-            
+
             input = new PlayerInput();
         }
 
@@ -50,7 +52,6 @@ namespace RPG
             controller = new PlayerController(this);
             components.Add(attribute);
             components.Add(controller);
-            
         }
 
         private void Start()

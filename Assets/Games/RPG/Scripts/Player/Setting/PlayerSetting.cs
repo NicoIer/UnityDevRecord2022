@@ -12,5 +12,6 @@ namespace RPG.Setting
         public string animWalk = "walk";
         public string xCode = "xCode";
         public string yCode = "yCode";
+        public string animAttack = "attack";
     }
 }
