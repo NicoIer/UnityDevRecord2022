@@ -14,7 +14,7 @@ namespace RPG
 
         [ShowInInspector, ReadOnly] public string state { get; private set; }
 
-        [ShowInInspector, ReadOnly] public Direction2DEnum facing { get; private set; }
+        [ShowInInspector, ReadOnly] public Direction2DEnum facingDirection { get; private set; }
         private Animator ac => owner.ac;
         private PlayerSetting setting => owner.setting;
         private int xCode => Animator.StringToHash(setting.xCode);
@@ -49,14 +49,13 @@ namespace RPG
             else
             {
                 if (move.x > 0)
-                    facing = Direction2DEnum.Right;
+                    facingDirection = Direction2DEnum.Right;
                 else if (move.x < 0)
-                    facing = Direction2DEnum.Left;
+                    facingDirection = Direction2DEnum.Left;
                 else if (move.y > 0)
-                    facing = Direction2DEnum.Up;
+                    facingDirection = Direction2DEnum.Up;
                 else if (move.y < 0)
-                    facing = Direction2DEnum.Down;
-                
+                    facingDirection = Direction2DEnum.Down;
                 ac.SetFloat(xCode, move.x);
                 ac.SetFloat(yCode, move.y);
             }
