@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba45e97e925c45928f0d055b4e972aed, type: 3}
   m_Name: PlayerSetting
   m_EditorClassIdentifier: 
-  xSpeed: 10
-  ySpeed: 10
+  xSpeed: 6
+  ySpeed: 6
+  animIdle: idle
+  animWalk: walk
+  xCode: xCode
+  yCode: yCode

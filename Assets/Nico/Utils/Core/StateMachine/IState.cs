@@ -2,7 +2,7 @@
 
 namespace Nico.Utils.Core.StateMachine
 {
-    public interface IState<T>: IComponent
+    public interface IState<T>: ICoreComponent
     {
         public T owner { get; set; }
         public IStateMachine<T> machine { get; set; }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Nico.Abstract
 {
-    public interface DataComponent: IComponent 
+    public interface IDataCoreComponent: ICoreComponent 
     {
         
     }

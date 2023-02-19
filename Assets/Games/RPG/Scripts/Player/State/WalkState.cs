@@ -33,17 +33,13 @@ namespace RPG
 
         public void Update()
         {
-            if (owner.input.Move == Vector2.zero)
-            {
-                machine.Change<IdleState>();
-            }
         }
 
         public void FixedUpdate()
         {
             if (move != Vector2.zero)
             {
-                owner.attribute.UpdateFacing();
+                // owner.attribute.UpdateFacing();
                 _apply_velocity();
             }
             else
@@ -60,7 +56,7 @@ namespace RPG
 
         public void Enter()
         {
-            owner.attribute.UpdateFacing();
+            // owner.attribute.UpdateFacing();
             owner.ac.SetBool(animParam, true);
         }
 

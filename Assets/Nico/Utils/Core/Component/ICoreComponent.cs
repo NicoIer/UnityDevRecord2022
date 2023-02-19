@@ -1,6 +1,6 @@
 ﻿namespace Nico.Utils.Core
 {
-    public interface IComponent
+    public interface ICoreComponent
     {
         void Enable();
         void Disable();

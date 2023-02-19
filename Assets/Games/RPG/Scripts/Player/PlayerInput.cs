@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RPG
 {
-    public class PlayerInput : IComponent
+    public class PlayerInput : ICoreComponent
     {
         private readonly NormalControls oper;
         public Vector2 Move => oper.Input.Move.ReadValue<Vector2>();
