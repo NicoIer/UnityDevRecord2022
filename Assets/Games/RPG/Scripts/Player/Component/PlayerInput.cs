@@ -19,13 +19,13 @@ namespace RPG
 
         #region IComponent
 
-        public void Enable()
+        public void OnEnable()
         {
             oper.Player.Enable();
         }
 
 
-        public void Disable()
+        public void OnDisable()
         {
             oper.Player.Disable();
         }

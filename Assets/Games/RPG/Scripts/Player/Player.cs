@@ -96,7 +96,7 @@ namespace RPG
         {
             foreach (var component in components)
             {
-                component.Enable();
+                component.OnEnable();
             }
 
             foreach (var component in controllers)
@@ -109,7 +109,7 @@ namespace RPG
         {
             foreach (var component in components)
             {
-                component.Disable();
+                component.OnDisable();
             }
 
             foreach (var component in controllers)

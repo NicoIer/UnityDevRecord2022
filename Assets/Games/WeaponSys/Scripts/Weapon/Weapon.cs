@@ -4,15 +4,14 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Nico.Utils.Core;
 using RPG;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using WeaponSys.Components;
 
 namespace WeaponSys
 {
     public class Weapon : MonoBehaviour
     {
-        public int curAttackCount;
-        public int numberOfAttack = 3;
-        public float intervalTime = 1.5f;
 
         public Animator ac { get; private set; }
         public WeaponData data;
@@ -20,21 +19,42 @@ namespace WeaponSys
 
         public AnimationEventHandler animationEventHandler { get; private set; }
 
-        private readonly List<IComponent<Weapon>> components = new();
-        private readonly List<IController<Weapon>> controllers = new();
+        [ShowInInspector] private readonly List<IComponent<Weapon>> components = new();
 
+        public AnimController animController { get; private set; }
+        [ShowInInspector] private readonly List<IController<Weapon>> controllers = new();
+
+        GameObject baseObj;
+        SpriteRenderer baseRenderer;
+        GameObject weaponSpriteObj;
+        SpriteRenderer weaponRenderer;
 
         private void Awake()
         {
-            var baseObj = transform.Find("Base").gameObject;
-            animationEventHandler = baseObj.GetComponent<AnimationEventHandler>();
-            ac = baseObj.GetComponent<Animator>();
-
+            _init_mono_components();
             oper = new NormalControls();
             oper.Player.Enable();
+            _init_controller();
+        }
 
-            var animController = new AnimController(this);
+        private void _init_mono_components()
+        {
+            baseObj = transform.Find("Base").gameObject;
+            baseRenderer = baseObj.GetComponent<SpriteRenderer>();
+            ac = baseObj.GetComponent<Animator>();
+
+            animationEventHandler = baseObj.GetComponent<AnimationEventHandler>();
+
+            weaponSpriteObj = transform.Find("WeaponSprite").gameObject;
+            weaponRenderer = weaponSpriteObj.GetComponent<SpriteRenderer>();
+        }
+
+        private void _init_controller()
+        {
+            animController = new AnimController(this);
             controllers.Add(animController);
+            var weaponSprite = new WeaponSprite(this, baseRenderer, weaponRenderer);
+            controllers.Add(weaponSprite);
         }
 
         private void Start()
@@ -65,7 +85,12 @@ namespace WeaponSys
         {
             foreach (var component in components)
             {
-                component.Enable();
+                component.OnEnable();
+            }
+
+            foreach (var controller in controllers)
+            {
+                controller.OnEnable();
             }
         }
 
@@ -73,7 +98,12 @@ namespace WeaponSys
         {
             foreach (var component in components)
             {
-                component.Disable();
+                component.OnDisable();
+            }
+            
+            foreach (var controller in controllers)
+            {
+                controller.OnDisable();
             }
         }
     }

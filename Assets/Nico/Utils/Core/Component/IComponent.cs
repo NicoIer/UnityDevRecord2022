@@ -7,7 +7,7 @@
     public interface IComponent<T>
     {
         public T owner { get; set; }
-        void Enable();
-        void Disable();
+        void OnEnable();
+        void OnDisable();
     }
 }
