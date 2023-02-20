@@ -9,16 +9,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 231649fef8d54c5b9923558b7a12d1db, type: 3}
-  m_Name: WeaponData 1
+  m_Script: {fileID: 11500000, guid: 55bbef32b40e43528005ef65c6d99641, type: 3}
+  m_Name: AnimDataTable
   m_EditorClassIdentifier: 
-  ID: 0
-  name: 
-  description: 
-  icon: {fileID: 0}
-  numOfAttack: 3
-  attackInterval: 1.5
-  attackAnim:
+  dataList:
+  - sprites:
+    - {fileID: -1780751373, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: 577957028, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: -509565249, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: 680478193, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: 365328359, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+  - sprites:
+    - {fileID: 1469980136, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: 1160239679, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: -1537962721, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: 342834816, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: 683960273, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+  - sprites:
+    - {fileID: -84422829, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: -1669289994, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: -312529561, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: -1032906865, guid: 3179c16b297295440b9749aff89377e2, type: 3}
+    - {fileID: 621078435, guid: 3179c16b297295440b9749aff89377e2, type: 3}
   - sprites:
     - {fileID: -1420518866, guid: 3f6ae8b3fa4b36e48b63b3edc225fda0, type: 3}
     - {fileID: -1505483480, guid: 3f6ae8b3fa4b36e48b63b3edc225fda0, type: 3}

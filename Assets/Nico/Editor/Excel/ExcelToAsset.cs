@@ -90,7 +90,15 @@ namespace Nico.Editor
 
                             if (!string.IsNullOrEmpty(attributeValue))
                             {
-                                fieldInfo.SetValue(structObj, Convert.ChangeType(attributeValue, fieldInfo.FieldType));
+                                if (attributeType == "int[]")
+                                {
+                                    int[] result = attributeValue.Split(",").Select(s => int.Parse(s)).ToArray();
+                                    fieldInfo.SetValue(structObj, result);
+                                }
+                                else
+                                {
+                                    fieldInfo.SetValue(structObj, Convert.ChangeType(attributeValue, fieldInfo.FieldType));
+                                }
                             }
                             else
                             {

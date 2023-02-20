@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &86946447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86946449}
+  - component: {fileID: 86946448}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &86946448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86946447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7950bf05c434d9cb77638924d17497d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animDataTable: {fileID: 11400000, guid: 1719fde06b0d5bf4e80aa35f344e7975, type: 2}
+  swordMetaDataTable: {fileID: 11400000, guid: 43e3bde12fb33134eaec1a572812be7d, type: 2}
+--- !u!4 &86946449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86946447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.4015007, y: 1.4175837, z: -0.07249782}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &125484202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,6 +183,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5d37d51fad35b0d41b6bacc7b99eb98b,
         type: 2}
+    - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
+        type: 3}
+      propertyPath: data.ID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}
       propertyPath: data.sprites.Array.size
