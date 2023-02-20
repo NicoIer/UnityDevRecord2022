@@ -53,7 +53,7 @@ namespace WeaponSys
         {
             animController = new AnimController(this);
             controllers.Add(animController);
-            var weaponSprite = new WeaponSprite(this, baseRenderer, weaponRenderer);
+            var weaponSprite = new SpriteController(this, baseRenderer, weaponRenderer);
             controllers.Add(weaponSprite);
         }
 

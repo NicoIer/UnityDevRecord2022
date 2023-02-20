@@ -133,6 +133,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d37d51fad35b0d41b6bacc7b99eb98b,
+        type: 2}
+    - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
+        type: 3}
       propertyPath: data.sprites.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -637,8 +643,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: c6053ba0490ea194ba1f30c2fa9a2edb,
+        type: 2}
+    - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
+        type: 3}
       propertyPath: data.sprites.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
+        type: 3}
+      propertyPath: data.attackAnim.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}
@@ -654,6 +671,11 @@ PrefabInstance:
         type: 3}
       propertyPath: data.sprites.Array.data[2].sprites.Array.size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
+        type: 3}
+      propertyPath: data.attackAnim.Array.data[0].sprites.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}

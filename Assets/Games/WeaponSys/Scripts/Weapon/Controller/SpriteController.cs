@@ -6,18 +6,19 @@ namespace WeaponSys.Components
     /// <summary>
     /// 武器精灵控制器
     /// </summary>
-    public class WeaponSprite : IController<Weapon>
+    public class SpriteController : IController<Weapon>
     {
         public Weapon owner { get; }
-        private SpriteRenderer baseRenderer;
-        private SpriteRenderer weaponRenderer;
-        private int currentSpriteIndex = 0;
+        private readonly SpriteRenderer baseRenderer;
+        private readonly SpriteRenderer weaponRenderer;
+        private int currentSpriteIndex;
 
-        public WeaponSprite(Weapon owner, SpriteRenderer baseRenderer, SpriteRenderer weaponRenderer)
+        public SpriteController(Weapon owner, SpriteRenderer baseRenderer, SpriteRenderer weaponRenderer)
         {
             this.owner = owner;
             this.baseRenderer = baseRenderer;
             this.weaponRenderer = weaponRenderer;
+            currentSpriteIndex = 0;
         }
 
 
@@ -61,14 +62,14 @@ namespace WeaponSys.Components
                 return;
             }
 
-            var curSprites = owner.data.sprites[owner.animController.curAttackCount].sprites;
-            if (currentSpriteIndex >= curSprites.Length)
+            var curAnim = owner.data.attackAnim[owner.animController.curAttackCount].sprites;
+            if (currentSpriteIndex >= curAnim.Count)
             {
                 Debug.Log($"{owner.name} weapon sprite index out of range {currentSpriteIndex}");
                 return;
             }
-            
-            weaponRenderer.sprite = curSprites[currentSpriteIndex];
+
+            weaponRenderer.sprite = curAnim[currentSpriteIndex];
             ++currentSpriteIndex;
         }
 
