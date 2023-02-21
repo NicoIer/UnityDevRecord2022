@@ -1,6 +1,6 @@
 ﻿using System;
 using Nico.Algorithm;
-using Nico.Utils.Core;
+using Nico.ECC;
 using UnityEngine;
 
 namespace WeaponSys
@@ -8,12 +8,12 @@ namespace WeaponSys
     public class AttackMoveController : IController<Weapon>
     {
         public Weapon owner { get; }
-        
+
         private Direction2DEnum facingDirection => owner.player.attribute.facingDirection;
-        
+
         private readonly Rigidbody2D rb;
         private Vector2 velocity;
-        private SwordAttackData curAttackData;
+        private SwordAttackMoveData curAttackMoveData;
         private AnimationEventHandler animationEventHandler => owner.animationEventHandler;
 
         private bool stopMove = true;
@@ -39,24 +39,37 @@ namespace WeaponSys
         private void _handle_start_move()
         {
             stopMove = false;
-            int facing = 1;
-            switch (facingDirection)
-            {
-                case Direction2DEnum.Right:
-                    facing = 1;
-                    break;
-                case Direction2DEnum.Left:
-                    facing = -1;
-                    break;
-            }
-            
-            curAttackData = owner.data.swordAttackData;
+
+
+            curAttackMoveData = owner.data.swordAttackMoveData;
             var curAttackIndex = owner.baseAc.curAttackIndex;
+            //这里会根据玩家的此帧的输入朝向朝向来决定攻击的方向
+
             try
             {
-                var offset = curAttackData.offsets[curAttackIndex].normalized;
-                var speed = curAttackData.speeds[curAttackIndex];
+                var offset = curAttackMoveData.offsets[curAttackIndex].normalized;
+                var speed = curAttackMoveData.speeds[curAttackIndex];
                 velocity = offset * speed;
+                var move = owner.player.input.move;
+                int facing = 1;
+                if (move.x == 0)
+                {
+                    switch (facingDirection)
+                    {
+                        case Direction2DEnum.Right:
+                            facing = 1;
+                            break;
+                        case Direction2DEnum.Left:
+                            facing = -1;
+                            break;
+                    }
+                }
+                else
+                {
+                    facing = move.x > 0 ? 1 : -1;
+                }
+
+
                 velocity.x *= facing;
             }
             catch (ArgumentOutOfRangeException)

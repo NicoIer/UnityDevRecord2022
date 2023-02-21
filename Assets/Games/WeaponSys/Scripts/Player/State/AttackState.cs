@@ -1,5 +1,5 @@
 ﻿using System;
-using Nico.Utils.Core;
+using Nico.ECC;
 using UnityEngine;
 
 namespace WeaponSys.State

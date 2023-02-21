@@ -1,5 +1,5 @@
 ﻿using Nico.Algorithm;
-using Nico.Utils.Core;
+using Nico.ECC;
 using UnityEngine;
 
 namespace WeaponSys
@@ -78,15 +78,6 @@ namespace WeaponSys
                     Debug.Log($"{owner.name} weapon sprite index out of range {currentSpriteIndex}");
                     return;
                 }
-                
-                if (owner.player.attribute.facingDirection == Direction2DEnum.Left)
-                {
-                    weaponRenderer.flipX = true;
-                }
-                else
-                {
-                    weaponRenderer.flipX = false;
-                }
 
 
                 weaponRenderer.sprite = curAnim[currentSpriteIndex];
@@ -98,6 +89,14 @@ namespace WeaponSys
             private void _on_anim_enter()
             {
                 currentSpriteIndex = 0;
+                if (owner.player.attribute.facingDirection == Direction2DEnum.Left)
+                {
+                    weaponRenderer.flipX = true;
+                }
+                else
+                {
+                    weaponRenderer.flipX = false;
+                }
             }
         }
     }

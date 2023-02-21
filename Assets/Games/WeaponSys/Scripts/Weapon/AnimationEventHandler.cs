@@ -10,6 +10,7 @@ namespace WeaponSys
         public event Action OnStartMove;
         public event Action OnStopMove;
 
+        public event Action OnAttack;
         public void AnimationExitTrigger()
         {
             OnExit?.Invoke();
@@ -28,6 +29,11 @@ namespace WeaponSys
         public void AnimatonStopMoveTrigger()
         {
             OnStopMove?.Invoke();
+        }
+        
+        public void AnimationAttackTrigger()
+        {
+            OnAttack?.Invoke();
         }
     }
 }

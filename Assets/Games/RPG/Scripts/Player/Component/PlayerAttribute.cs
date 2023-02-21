@@ -1,6 +1,6 @@
 ﻿using System;
 using Nico.Algorithm;
-using Nico.Utils.Core;
+using Nico.ECC;
 using RPG.Setting;
 using Sirenix.OdinInspector;
 using UnityEngine;

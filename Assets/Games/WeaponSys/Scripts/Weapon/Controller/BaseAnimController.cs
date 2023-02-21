@@ -2,7 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Nico.Algorithm;
-using Nico.Utils.Core;
+using Nico.ECC;
 using UnityEngine;
 using WeaponSys.State;
 
@@ -52,6 +52,7 @@ namespace WeaponSys
 
         public void Update()
         {
+
             if (owner.player.stateMachine.curState is AttackState && !playing)
             {
                 _player_anim();

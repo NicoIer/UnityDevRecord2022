@@ -1,7 +1,10 @@
-﻿using Nico.Template;
+﻿#define NICO_DEBUGD
+using System;
+using Nico.ECC.Template;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using WeaponSys.WeaponSys;
+using Random = UnityEngine.Random;
 
 namespace WeaponSys
 {
@@ -56,7 +59,7 @@ namespace WeaponSys
 
         protected override void _init_controller()
         {
-            baseAc = new BaseAnimController(this,baseRenderer);
+            baseAc = new BaseAnimController(this, baseRenderer);
             controllers.Add(baseAc);
 
             var weaponSprite = new WeaponAnimController(this, baseRenderer, weaponRenderer);
@@ -64,8 +67,25 @@ namespace WeaponSys
 
             var weaponMove = new AttackMoveController(this, rb);
             controllers.Add(weaponMove);
+
+            var hitBox = new HitBoxController(this);
+            controllers.Add(hitBox);
         }
 
         #endregion
+
+
+        private void OnDrawGizmos()
+        {
+#if NICO_DEBUGD
+            foreach (var hitBox in data.hitBoxData.HitBox)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireCube(transform.position + (Vector3)hitBox.position, hitBox.size);
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireCube(transform.position + (Vector3)hitBox.center, hitBox.size);
+            }
+#endif
+        }
     }
 }

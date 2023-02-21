@@ -1,5 +1,5 @@
 ﻿using Nico.Algorithm;
-using Nico.Utils.Core;
+using Nico.ECC;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

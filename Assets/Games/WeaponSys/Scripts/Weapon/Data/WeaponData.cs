@@ -16,7 +16,7 @@ namespace WeaponSys
         //ToDo 获取可以做一个WeaponMetaData的抽象类
         private SwordMetaData metaData => DataTableManager.instance.swordMetaDataTable.GetByID(ID);
 
-        public string name => metaData.name;
+        public string meataName => metaData.name;
         public string description => metaData.description;
         public int numOfAttack => metaData.numOfAttack;
         public float attackInterval => metaData.maxInterval;
@@ -44,6 +44,10 @@ namespace WeaponSys
         }
 
         //ToDo 暂时用这个 之后改成DataTable读取 整合到SwordMetaData中 
-        public SwordAttackData swordAttackData;
+        public SwordAttackMoveData swordAttackMoveData;
+
+        public HitBoxData hitBoxData;
+
+
     }
 }

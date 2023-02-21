@@ -95,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1390541888, guid: ff49514b12a55a74cba29030d074dec7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &9197958763462821042
@@ -150,7 +150,7 @@ Transform:
   - {fileID: 3542226603859154875}
   - {fileID: 5174502025872817402}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &368641804670989940
 MonoBehaviour:
@@ -164,19 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c72fc0e31a428b8b5bb18f85b46cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    ID: 1
-    icon: {fileID: 0}
-    swordAttackData:
-      offsets:
-      - {x: 1, y: 0}
-      - {x: 1, y: 0}
-      - {x: 1, y: 5}
-      speeds:
-      - 3
-      - 4
-      - 5
-  player: {fileID: 0}
+  data: {fileID: 11400000, guid: 08ccefd61a105a543883abea3726181b, type: 2}
 --- !u!1 &8477732809548598557
 GameObject:
   m_ObjectHideFlags: 0

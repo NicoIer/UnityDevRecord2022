@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Nico.Data;
-using Nico.Utils;
+using Nico.ECS;
 using OfficeOpenXml;
 using Sirenix.OdinInspector;
 using Unity.Assertions;

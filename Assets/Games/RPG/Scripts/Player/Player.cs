@@ -1,5 +1,5 @@
 ﻿using System;
-using Nico.Template;
+using Nico.ECC.Template;
 using RPG.Controller;
 using RPG.Setting;
 using UnityEngine;

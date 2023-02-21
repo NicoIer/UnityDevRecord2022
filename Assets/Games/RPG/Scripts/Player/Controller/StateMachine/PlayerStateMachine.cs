@@ -1,4 +1,4 @@
-﻿using Nico.Template;
+﻿using Nico.ECC.Template;
 
 namespace RPG
 {

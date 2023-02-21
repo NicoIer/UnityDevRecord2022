@@ -1,6 +1,6 @@
 ﻿using Nico.Algorithm;
-using Nico.Template;
-using Nico.Utils.Core;
+using Nico.ECC.Template;
+using Nico.ECC;
 using UnityEngine;
 
 namespace WeaponSys.State
