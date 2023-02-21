@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Nico.ECC.Template
 {
-    public abstract class TemplateEntityMonoBehavior<T> : MonoBehaviour
+    public abstract class TemplateEntityMonoBehavior<T> : MonoBehaviour,IEnity
     {
         [ShowInInspector] protected readonly List<IController<T>> controllers = new();
         [ShowInInspector] protected readonly List<IComponent<T>> components = new();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Nico.Data;
+using Nico.ECC.Data;
 using UnityEngine;
 
 namespace WeaponSys
@@ -9,7 +10,7 @@ namespace WeaponSys
     /// 后续改成DataTable + Data->string->查找资源的形式
     /// </summary>
     [CreateAssetMenu(fileName = "WeaponData", menuName = "WeaponSys/WeaponData", order = 0)]
-    public class WeaponData: DataContainer
+    public class WeaponData: DataContainer<Weapon>
     {
         public int ID;
         public Sprite icon;
