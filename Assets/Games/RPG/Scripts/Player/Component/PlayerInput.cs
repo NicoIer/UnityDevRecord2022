@@ -1,35 +1,17 @@
-﻿using Nico.Utils.Core;
+﻿using Nico.Template;
+using Nico.Utils.Core;
 using UnityEngine;
 
 namespace RPG
 {
-    public class PlayerInput : IComponent<Player>
+    public class PlayerInput : TemplateInput<Player>
     {
-        public Player owner { get; set; }
-        private readonly NormalControls oper;
-        public Vector2 Move => oper.Player.Move.ReadValue<Vector2>();
-        public bool Run => oper.Player.Run.WasPerformedThisFrame();
-        public bool Attack => oper.Player.NormalAttack.WasPressedThisFrame();
+        public Vector2 Move => controls.Player.Move.ReadValue<Vector2>();
+        public bool Run => controls.Player.Run.WasPerformedThisFrame();
+        public bool Attack => controls.Player.NormalAttack.WasPressedThisFrame();
 
-        public PlayerInput(Player owner)
+        public PlayerInput(Player owner) : base(owner)
         {
-            this.owner = owner;
-            oper = new NormalControls();
         }
-
-        #region IComponent
-
-        public void OnEnable()
-        {
-            oper.Player.Enable();
-        }
-
-
-        public void OnDisable()
-        {
-            oper.Player.Disable();
-        }
-
-        #endregion
     }
 }

@@ -1,33 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using Nico.Utils.Core;
-using RPG;
-using Sirenix.OdinInspector;
+﻿using Nico.Template;
 using UnityEngine;
 using WeaponSys.Components;
 
 namespace WeaponSys
 {
-    public class Weapon : MonoBehaviour
+    public class Weapon : TemplateEntityMonoBehavior<Weapon>
     {
         public WeaponData data;
-        public NormalControls oper { get; private set; }
+        public NormalControls input { get; private set; }
 
         #region Component
 
         public AnimationEventHandler animationEventHandler { get; private set; }
 
-        [ShowInInspector] private readonly List<IComponent<Weapon>> components = new();
-
         #endregion
-
 
         #region Controller
 
         public AnimController animController { get; private set; }
-        [ShowInInspector] private readonly List<IController<Weapon>> controllers = new();
 
         #endregion
 
@@ -44,15 +34,7 @@ namespace WeaponSys
 
         #region Init
 
-        private void Awake()
-        {
-            _init_mono_components();
-            oper = new NormalControls();
-            oper.Player.Enable();
-            _init_controller();
-        }
-
-        private void _init_mono_components()
+        protected override void _get_mono_components()
         {
             baseObj = transform.Find("Base").gameObject;
             baseRenderer = baseObj.GetComponent<SpriteRenderer>();
@@ -64,9 +46,17 @@ namespace WeaponSys
             weaponRenderer = weaponSpriteObj.GetComponent<SpriteRenderer>();
 
             rb = GetComponent<Rigidbody2D>();
+
+
+            input = new NormalControls();
+            input.Player.Enable();
         }
 
-        private void _init_controller()
+        protected override void _init_components()
+        {
+        }
+        
+        protected override void _init_controller()
         {
             animController = new AnimController(this);
             controllers.Add(animController);
@@ -76,61 +66,6 @@ namespace WeaponSys
 
             var weaponMove = new MoveController(this, rb);
             controllers.Add(weaponMove);
-        }
-
-        #endregion
-
-
-        #region Contoller Cycle
-
-        private void Start()
-        {
-            foreach (var controller in controllers)
-            {
-                controller.Start();
-            }
-        }
-
-        private void Update()
-        {
-            foreach (var controller in controllers)
-            {
-                controller.Update();
-            }
-        }
-
-        private void FixedUpdate()
-        {
-            foreach (var controller in controllers)
-            {
-                controller.FixedUpdate();
-            }
-        }
-
-        private void OnEnable()
-        {
-            foreach (var component in components)
-            {
-                component.OnEnable();
-            }
-
-            foreach (var controller in controllers)
-            {
-                controller.OnEnable();
-            }
-        }
-
-        private void OnDisable()
-        {
-            foreach (var component in components)
-            {
-                component.OnDisable();
-            }
-
-            foreach (var controller in controllers)
-            {
-                controller.OnDisable();
-            }
         }
 
         #endregion

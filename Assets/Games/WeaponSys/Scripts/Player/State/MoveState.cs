@@ -2,24 +2,22 @@
 using Nico.Utils.Core;
 using UnityEngine;
 
-namespace RPG
+namespace WeaponSys.State
 {
-    public class AttackState : TemplateState<Player>
+    public class MoveState : TemplateState<Player>
     {
-        public AttackState(Player owner, IStateMachine<Player> machine, string animParam) : base(owner, machine,
-            animParam)
+        public MoveState(Player owner, IStateMachine<Player> machine, string animParam) : base(owner, machine, animParam)
         {
         }
 
         public override void Update()
         {
-            var stateInfo = owner.ac.GetCurrentAnimatorStateInfo(0);
-            if (stateInfo.normalizedTime >= 1)
-                machine.Change<IdleState>();
+            
         }
 
         public override void FixedUpdate()
         {
+            
         }
 
         public override void Exit()
@@ -32,4 +30,5 @@ namespace RPG
             owner.ac.SetBool(animParam, true);
         }
     }
+    
 }

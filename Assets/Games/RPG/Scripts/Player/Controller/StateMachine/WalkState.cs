@@ -1,31 +1,28 @@
 ﻿using System.Linq;
 using Nico.Algorithm;
+using Nico.Template;
 using Nico.Utils.Core;
 using RPG.Setting;
 using UnityEngine;
 
 namespace RPG
 {
-    public class WalkState : IState<Player>
+    public class WalkState : TemplateState<Player>
     {
-        public Player owner { get; set; }
         private PlayerSetting setting => owner.setting;
-        public IStateMachine<Player> machine { get; set; }
-        private readonly int animParam;
+
 
         private Vector2 move => owner.input.Move;
         private bool run => owner.input.Run;
         private bool attack => owner.input.Attack;
 
-        public WalkState(Player owner, IStateMachine<Player> machine, string animParam)
+
+        public WalkState(Player owner, IStateMachine<Player> machine, string animParam) : base(owner, machine,
+            animParam)
         {
-            this.owner = owner;
-            this.machine = machine;
-            this.animParam = Animator.StringToHash(animParam);
         }
 
-
-        public void Update()
+        public override void Update()
         {
             if (move == Vector2.zero)
             {
@@ -45,18 +42,18 @@ namespace RPG
             // }
         }
 
-        public void FixedUpdate()
+        public override void FixedUpdate()
         {
             _apply_velocity();
         }
 
-        public void Exit()
+        public override void Exit()
         {
             owner.rb.velocity = Vector2.zero;
             owner.ac.SetBool(animParam, false);
         }
 
-        public void Enter()
+        public override void Enter()
         {
             owner.ac.SetBool(animParam, true);
         }

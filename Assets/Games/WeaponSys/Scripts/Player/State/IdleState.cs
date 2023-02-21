@@ -2,31 +2,25 @@
 using Nico.Utils.Core;
 using UnityEngine;
 
-namespace RPG
+namespace WeaponSys.State
 {
     public class IdleState : TemplateState<Player>
     {
-        private Vector2 move => owner.input.Move;
-        private bool run => owner.input.Run;
-        private bool attack => owner.input.Attack;
+
+        private Vector2 move => owner.input.controls.Player.Move.ReadValue<Vector2>();
+        private bool attack => owner.input.controls.Player.NormalAttack.WasPressedThisFrame();
 
 
-        public IdleState(Player owner, IStateMachine<Player> machine, string animParam) : base(owner, machine,
-            animParam)
-        {
-        }
 
         public override void Update()
         {
             if (attack)
             {
                 machine.Change<AttackState>();
-                return;
             }
-
             if (move != Vector2.zero)
             {
-                machine.Change<WalkState>();
+                machine.Change<MoveState>();
                 return;
             }
         }
@@ -35,6 +29,12 @@ namespace RPG
         {
         }
 
+
+
+        public IdleState(Player owner, IStateMachine<Player> machine, string animParam) : base(owner, machine, animParam)
+        {
+        }
+        
         public override void Exit()
         {
             owner.ac.SetBool(animParam, false);

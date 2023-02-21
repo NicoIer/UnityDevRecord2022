@@ -8,27 +8,31 @@ namespace Nico.Template
 {
     public abstract class TemplateEntityStateMachine<T> : IStateMachine<T>
     {
-        public T owner { get; private set; }
+        public T owner { get; protected set; }
         public IState<T> cur { get; protected set; }
-        protected Dictionary<Type, IState<T>> states = new();
+        protected readonly Dictionary<Type, IState<T>> states = new();
 
-        public TemplateEntityStateMachine(T owner)
+        protected TemplateEntityStateMachine(T owner)
         {
             this.owner = owner;
         }
 
+        protected void Add(IState<T> state)
+        {
+            states.TryAdd(state.GetType(), state);
+        }
         #region IStateMachine
 
         public abstract void Start();
 
         public void Update()
         {
-            cur.Update();
+            cur?.Update();
         }
 
         public void FixedUpdate()
         {
-            cur.FixedUpdate();
+            cur?.FixedUpdate();
         }
 
 

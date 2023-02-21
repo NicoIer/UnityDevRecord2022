@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Nico.Template;
-using Nico.Utils.Core;
-using UnityEngine;
+﻿using Nico.Template;
 
 namespace RPG
 {

@@ -47,7 +47,8 @@ namespace WeaponSys
 
         public void Update()
         {
-            if (owner.oper.Player.NormalAttack.WasPressedThisFrame() && !playing)
+            //ToDo 这里改成从Player实体获取动画状态
+            if (owner.input.Player.NormalAttack.WasPressedThisFrame() && !playing)
             {
                 _player_anim();
                 return;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Nico.Utils.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -9,6 +10,18 @@ namespace Nico.Template
     {
         [ShowInInspector, ReadOnly] protected readonly List<IController<T>> controllers = new();
         [ShowInInspector, ReadOnly] protected readonly List<IComponent<T>> components = new();
+
+
+        public T1 GetIComponent<T1>() where T1 : IComponent<T>
+        {
+            return components.OfType<T1>().First();
+        }
+
+
+        public T1 GetIController<T1>() where T1 : IController<T>
+        {
+            return controllers.OfType<T1>().First();
+        }
 
         #region Init
 

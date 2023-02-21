@@ -95,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1390541888, guid: ff49514b12a55a74cba29030d074dec7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &9197958763462821042
@@ -143,7 +143,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513088789580414893}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -151,7 +151,7 @@ Transform:
   - {fileID: 3542226603859154875}
   - {fileID: 5174502025872817402}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &368641804670989940
 MonoBehaviour:
@@ -166,9 +166,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    ID: 0
+    ID: 1
     icon: {fileID: 0}
-    swordAttackDatas: []
+    swordAttackData:
+      offsets:
+      - {x: 1, y: 0}
+      - {x: 1, y: 0}
+      - {x: 1, y: 5}
+      speeds:
+      - 3
+      - 4
+      - 5
 --- !u!50 &8794735827787143948
 Rigidbody2D:
   serializedVersion: 4
@@ -195,7 +203,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &8477732809548598557
 GameObject:
   m_ObjectHideFlags: 0
