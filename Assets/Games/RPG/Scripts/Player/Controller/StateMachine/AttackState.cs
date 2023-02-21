@@ -1,4 +1,4 @@
-﻿using Nico.Utils.Core.StateMachine;
+﻿using Nico.Utils.Core;
 using UnityEngine;
 
 namespace RPG

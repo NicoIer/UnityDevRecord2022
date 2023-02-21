@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Nico.Algorithm;
-using Nico.Utils.Core.StateMachine;
+using Nico.Utils.Core;
 using RPG.Setting;
 using UnityEngine;
 

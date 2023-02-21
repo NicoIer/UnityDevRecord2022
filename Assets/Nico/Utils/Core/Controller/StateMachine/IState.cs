@@ -1,6 +1,6 @@
 ﻿using UnityEngine.PlayerLoop;
 
-namespace Nico.Utils.Core.StateMachine
+namespace Nico.Utils.Core
 {
     public interface IState<T>
     {

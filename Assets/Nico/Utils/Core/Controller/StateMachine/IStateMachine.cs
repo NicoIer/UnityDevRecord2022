@@ -1,4 +1,4 @@
-﻿namespace Nico.Utils.Core.StateMachine
+﻿namespace Nico.Utils.Core
 {
     public interface IStateMachine<T> : IController<T>
     {

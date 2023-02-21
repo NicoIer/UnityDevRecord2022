@@ -1,4 +1,4 @@
-﻿namespace Nico.Utils.Core.Data
+﻿namespace Nico.Utils.Core
 {
     public interface IData
     {

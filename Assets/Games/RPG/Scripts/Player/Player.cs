@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Nico.Utils.Core;
 using RPG.Controller;
 using RPG.Setting;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace RPG

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Nico.Utils.Core.StateMachine;
+using Nico.Utils.Core;
 using UnityEngine;
 
 namespace RPG
