@@ -1,20 +1,21 @@
-﻿using System;
-using Nico.Utils.Core;
+﻿using Nico.Utils.Core;
 using UnityEngine;
 
-namespace WeaponSys.Components
+namespace WeaponSys
+{
+namespace WeaponSys
 {
     /// <summary>
     /// 武器精灵控制器
     /// </summary>
-    public class SpriteController : IController<Weapon>
+    public class WeaponAnimController : IController<Weapon>
     {
         public Weapon owner { get; }
         private readonly SpriteRenderer baseRenderer;
         private readonly SpriteRenderer weaponRenderer;
         private int currentSpriteIndex;
 
-        public SpriteController(Weapon owner, SpriteRenderer baseRenderer, SpriteRenderer weaponRenderer)
+        public WeaponAnimController(Weapon owner, SpriteRenderer baseRenderer, SpriteRenderer weaponRenderer)
         {
             this.owner = owner;
             this.baseRenderer = baseRenderer;
@@ -40,15 +41,15 @@ namespace WeaponSys.Components
         {
             baseRenderer.RegisterSpriteChangeCallback(_on_sprite_change);
 
-            owner.animController.onEnter += _on_anim_enter;
-            owner.animController.OnExit += _on_anim_exit;
+            owner.baseAc.onEnter += _on_anim_enter;
+            owner.baseAc.OnExit += _on_anim_exit;
         }
 
         public void OnDisable()
         {
             baseRenderer.UnregisterSpriteChangeCallback(_on_sprite_change);
-            owner.animController.onEnter -= _on_anim_enter;
-            owner.animController.OnExit += _on_anim_exit;
+            owner.baseAc.onEnter -= _on_anim_enter;
+            owner.baseAc.OnExit += _on_anim_exit;
         }
 
         private void _on_anim_exit()
@@ -64,13 +65,13 @@ namespace WeaponSys.Components
         /// <param name="rerer"></param>
         private void _on_sprite_change(SpriteRenderer rerer)
         {
-            if (!owner.animController.playing)
+            if (!owner.baseAc.playing)
             {
                 weaponRenderer.sprite = null;
                 return;
             }
 
-            var curAnim = owner.data.attackAnim[owner.animController.curAttackIndex].sprites;
+            var curAnim = owner.data.attackAnim[owner.baseAc.curAttackIndex].sprites;
             if (currentSpriteIndex >= curAnim.Count)
             {
                 Debug.Log($"{owner.name} weapon sprite index out of range {currentSpriteIndex}");
@@ -86,4 +87,5 @@ namespace WeaponSys.Components
             currentSpriteIndex = 0;
         }
     }
+}
 }

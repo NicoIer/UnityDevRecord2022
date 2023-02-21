@@ -6,9 +6,9 @@ namespace RPG
 {
     public class IdleState : TemplateState<Player>
     {
-        private Vector2 move => owner.input.Move;
+        private Vector2 move => owner.input.move;
         private bool run => owner.input.Run;
-        private bool attack => owner.input.Attack;
+        private bool rightAttack => owner.input.rightAttack;
 
 
         public IdleState(Player owner, IStateMachine<Player> machine, string animParam) : base(owner, machine,
@@ -18,7 +18,7 @@ namespace RPG
 
         public override void Update()
         {
-            if (attack)
+            if (rightAttack)
             {
                 machine.Change<AttackState>();
                 return;

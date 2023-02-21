@@ -19,9 +19,9 @@ namespace WeaponSys
 
         public override void Start()
         {
-            states.Add(typeof(IdleState), new IdleState(owner, this, "idle"));
-            states.Add(typeof(AttackState), new AttackState(owner, this, "attack"));
-            states.Add(typeof(MoveState), new MoveState(owner, this, "move"));
+            states.Add(typeof(IdleState), new IdleState(owner, this, owner.setting.animIdle));
+            states.Add(typeof(AttackState), new AttackState(owner, this, owner.setting.animAttack));
+            states.Add(typeof(MoveState), new MoveState(owner, this, owner.setting.animWalk));
             Change<IdleState>();
         }
     }

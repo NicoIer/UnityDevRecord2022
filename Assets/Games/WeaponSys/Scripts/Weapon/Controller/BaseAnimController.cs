@@ -3,13 +3,14 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Nico.Utils.Core;
 using UnityEngine;
+using WeaponSys.State;
 
 namespace WeaponSys
 {
     /// <summary>
     /// 武器动画控制器
     /// </summary>
-    public class AnimController : IController<Weapon>
+    public class BaseAnimController : IController<Weapon>
     {
         public int curAttackIndex;
 
@@ -26,7 +27,7 @@ namespace WeaponSys
         private Animator ac => owner.ac;
         public bool playing { get; private set; } = false;
 
-        public AnimController(Weapon owner)
+        public BaseAnimController(Weapon owner)
         {
             this.owner = owner;
         }
@@ -47,8 +48,7 @@ namespace WeaponSys
 
         public void Update()
         {
-            //ToDo 这里改成从Player实体获取动画状态
-            if (owner.input.Player.NormalAttack.WasPressedThisFrame() && !playing)
+            if (owner.player.stateMachine.curState is AttackState && !playing)
             {
                 _player_anim();
                 return;

@@ -12,9 +12,9 @@ namespace RPG
         private PlayerSetting setting => owner.setting;
 
 
-        private Vector2 move => owner.input.Move;
+        private Vector2 move => owner.input.move;
         private bool run => owner.input.Run;
-        private bool attack => owner.input.Attack;
+        private bool rightAttack => owner.input.rightAttack;
 
 
         public WalkState(Player owner, IStateMachine<Player> machine, string animParam) : base(owner, machine,
@@ -30,7 +30,7 @@ namespace RPG
                 return;
             }
 
-            if (attack)
+            if (rightAttack)
             {
                 machine.Change<AttackState>();
                 return;

@@ -18,7 +18,7 @@ namespace RPG
             states.TryAdd(typeof(AttackState), new AttackState(owner, this,owner.setting.animAttack));
             // states.TryAdd(typeof(RunState), new RunState(owner, this,owner.setting.animRun));
             //ToDo 期望这里可以自动添加所有的状态
-            cur = states[typeof(IdleState)];
+            curState = states[typeof(IdleState)];
         }
 
         

@@ -8,8 +8,8 @@ namespace WeaponSys
     public class MoveController : IController<Weapon>
     {
         public Weapon owner { get; }
-
-        public Direction2DEnum facingDirection { get; private set; } = Direction2DEnum.Right;
+        
+        private Direction2DEnum facingDirection => owner.player.attribute.facingDirection;
 
         //ToDo 这样的方式不好,应该使用一个IComponet来存储数据,然后实现一个对应的Controller来通过Component来控制RB的速度
         private readonly Rigidbody2D rb;
@@ -50,9 +50,9 @@ namespace WeaponSys
                     facing = -1;
                     break;
             }
-
+            
             curAttackData = owner.data.swordAttackData;
-            var curAttackIndex = owner.animController.curAttackIndex;
+            var curAttackIndex = owner.baseAc.curAttackIndex;
             try
             {
                 var offset = curAttackData.offsets[curAttackIndex].normalized;
@@ -86,10 +86,10 @@ namespace WeaponSys
 
         public void FixedUpdate()
         {
-            if(!stopMove)
-                 rb.MovePosition(rb.position + velocity * Time.deltaTime);
-                //rb.velocity = velocity;
-            // 
+            if (!stopMove)
+            {
+                rb.velocity = velocity;
+            }
         }
     }
 }

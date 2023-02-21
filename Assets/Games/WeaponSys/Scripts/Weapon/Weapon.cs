@@ -1,13 +1,12 @@
 ﻿using Nico.Template;
 using UnityEngine;
-using WeaponSys.Components;
+using WeaponSys.WeaponSys;
 
 namespace WeaponSys
 {
     public class Weapon : TemplateEntityMonoBehavior<Weapon>
     {
         public WeaponData data;
-        public NormalControls input { get; private set; }
 
         #region Component
 
@@ -17,7 +16,7 @@ namespace WeaponSys
 
         #region Controller
 
-        public AnimController animController { get; private set; }
+        public BaseAnimController baseAc { get; private set; }
 
         #endregion
 
@@ -29,6 +28,7 @@ namespace WeaponSys
         SpriteRenderer baseRenderer;
         GameObject weaponSpriteObj;
         SpriteRenderer weaponRenderer;
+        public Player player;
 
         #endregion
 
@@ -45,23 +45,20 @@ namespace WeaponSys
             weaponSpriteObj = transform.Find("WeaponSprite").gameObject;
             weaponRenderer = weaponSpriteObj.GetComponent<SpriteRenderer>();
 
-            rb = GetComponent<Rigidbody2D>();
-
-
-            input = new NormalControls();
-            input.Player.Enable();
+            rb = GetComponentInParent<Rigidbody2D>();
+            player = GetComponentInParent<Player>();
         }
 
         protected override void _init_components()
         {
         }
-        
+
         protected override void _init_controller()
         {
-            animController = new AnimController(this);
-            controllers.Add(animController);
+            baseAc = new BaseAnimController(this);
+            controllers.Add(baseAc);
 
-            var weaponSprite = new SpriteController(this, baseRenderer, weaponRenderer);
+            var weaponSprite = new WeaponAnimController(this, baseRenderer, weaponRenderer);
             controllers.Add(weaponSprite);
 
             var weaponMove = new MoveController(this, rb);

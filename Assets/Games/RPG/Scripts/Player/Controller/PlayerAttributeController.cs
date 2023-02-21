@@ -35,9 +35,10 @@ namespace RPG.Controller
 
         public void Update()
         {
-            attribute.velocity = new Vector2(owner.input.Move.x * setting.xSpeed, owner.input.Move.y * setting.ySpeed);
-            attribute.state = owner.stateMachine.cur.GetType().Name;
-            if (owner.stateMachine.cur.GetType() != typeof(AttackState))
+            var move = owner.input.move;
+            attribute.velocity = new Vector2(move.x * setting.xSpeed, move.y * setting.ySpeed);
+            attribute.state = owner.stateMachine.curState.GetType().Name;
+            if (owner.stateMachine.curState.GetType() != typeof(AttackState))
             {
                 //攻击的时候不能改变朝向
                 UpdateFacing();
@@ -46,8 +47,11 @@ namespace RPG.Controller
 
         public void UpdateFacing()
         {
-            var move = owner.input.Move;
-            if (move == Vector2.zero) return;
+            var move = owner.input.move;
+            if (move == Vector2.zero)
+            {
+                return;
+            }
             else
             {
                 if (move.x > 0)

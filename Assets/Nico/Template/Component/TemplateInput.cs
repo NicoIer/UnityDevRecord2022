@@ -6,7 +6,11 @@ namespace Nico.Template
     public class TemplateInput<T> : IComponent<T>
     {
         public T owner { get; set; }
-        public readonly NormalControls controls;
+        protected readonly NormalControls controls;
+        public Vector2 move => controls.Player.Move.ReadValue<Vector2>();
+        public bool rightAttack => controls.Player.NormalAttack.triggered;
+        public bool leftAttack => controls.Player.SpecialAttack.triggered;
+        
         public TemplateInput(T owner)
         {
             this.owner = owner;

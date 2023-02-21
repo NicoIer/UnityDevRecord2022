@@ -46,6 +46,15 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SpecialAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""04b34e1a-592e-4508-a174-188693212a3c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""eaa52a59-bc97-4459-8b13-aeef529ace07"",
@@ -169,7 +178,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""89078260-44a3-41cf-98b3-2933aea364e8"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Normal"",
@@ -209,6 +218,28 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b2bdada-f133-49d5-9a52-0b6a5bced0da"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""265d851c-ddd9-419b-bedc-22a5842b357c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -241,6 +272,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_NormalAttack = m_Player.FindAction("NormalAttack", throwIfNotFound: true);
+        m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
     }
 
@@ -305,6 +337,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_NormalAttack;
+    private readonly InputAction m_Player_SpecialAttack;
     private readonly InputAction m_Player_Run;
     public struct PlayerActions
     {
@@ -312,6 +345,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
         public PlayerActions(@NormalControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @NormalAttack => m_Wrapper.m_Player_NormalAttack;
+        public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -328,6 +362,9 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
             @NormalAttack.started += instance.OnNormalAttack;
             @NormalAttack.performed += instance.OnNormalAttack;
             @NormalAttack.canceled += instance.OnNormalAttack;
+            @SpecialAttack.started += instance.OnSpecialAttack;
+            @SpecialAttack.performed += instance.OnSpecialAttack;
+            @SpecialAttack.canceled += instance.OnSpecialAttack;
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
@@ -341,6 +378,9 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
             @NormalAttack.started -= instance.OnNormalAttack;
             @NormalAttack.performed -= instance.OnNormalAttack;
             @NormalAttack.canceled -= instance.OnNormalAttack;
+            @SpecialAttack.started -= instance.OnSpecialAttack;
+            @SpecialAttack.performed -= instance.OnSpecialAttack;
+            @SpecialAttack.canceled -= instance.OnSpecialAttack;
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
@@ -374,6 +414,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnNormalAttack(InputAction.CallbackContext context);
+        void OnSpecialAttack(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
     }
 }

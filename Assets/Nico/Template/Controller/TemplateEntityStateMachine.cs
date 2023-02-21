@@ -9,7 +9,7 @@ namespace Nico.Template
     public abstract class TemplateEntityStateMachine<T> : IStateMachine<T>
     {
         public T owner { get; protected set; }
-        public IState<T> cur { get; protected set; }
+        public IState<T> curState { get; protected set; }
         protected readonly Dictionary<Type, IState<T>> states = new();
 
         protected TemplateEntityStateMachine(T owner)
@@ -27,12 +27,12 @@ namespace Nico.Template
 
         public void Update()
         {
-            cur?.Update();
+            curState?.Update();
         }
 
         public void FixedUpdate()
         {
-            cur?.FixedUpdate();
+            curState?.FixedUpdate();
         }
 
 
@@ -42,9 +42,9 @@ namespace Nico.Template
 
         public void Change<T1>() where T1 : IState<T>
         {
-            cur?.Exit();
-            cur = states[typeof(T1)];
-            cur?.Enter();
+            curState?.Exit();
+            curState = states[typeof(T1)];
+            curState?.Enter();
         }
 
         #endregion
