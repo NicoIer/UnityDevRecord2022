@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using Nico.Template;
 using Nico.Utils.Core;
 using UnityEngine;
 
 namespace RPG
 {
-    public class PlayerStateMachine : IStateMachine<Player>
+    public class PlayerStateMachine : TemplateEntityStateMachine<Player>
     {
-        public Player owner { get; private set; }
-        public IState<Player> cur { get; private set; }
-        private Dictionary<Type, IState<Player>> states = new();
-
-        public PlayerStateMachine(Player owner)
+        
+        public PlayerStateMachine(Player owner) : base(owner)
         {
-            this.owner = owner;
         }
-
+        
         #region IStateMachine
 
-        public void Start()
+        public override void Start()
         {
             states.TryAdd(typeof(IdleState), new IdleState(owner,this,owner.setting.animIdle));
             states.TryAdd(typeof(WalkState), new WalkState(owner, this,owner.setting.animWalk));
@@ -28,33 +25,15 @@ namespace RPG
             cur = states[typeof(IdleState)];
         }
 
-        public void Update()
-        {
-            cur.Update();
-        }
-
-        public void FixedUpdate()
-        {
-            cur.FixedUpdate();
-        }
-
-
-        public void OnEnable()
+        
+        public override void OnEnable()
         {
         }
 
-        public void OnDisable()
+        public override void OnDisable()
         {
         }
-
-        public void Change<T1>() where T1 : IState<Player>
-        {
-            Debug.Log($"from{cur.GetType()}to{typeof(T1)}");
-            cur?.Exit();
-            cur = states[typeof(T1)];
-            cur?.Enter();
-        }
-
+        
         #endregion
     }
 }
