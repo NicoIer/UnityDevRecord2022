@@ -8,17 +8,16 @@ namespace RPG.Controller
     public class PlayerAttributeController : IController<Player>
     {
         public Player owner { get; set; }
-        private readonly PlayerAttribute attribute;
+        private PlayerAttribute attribute=>owner.attribute;
         private Animator ac => owner.ac;
         private PlayerSetting setting => owner.setting;
 
         private int xCode => Animator.StringToHash(setting.xCode);
         private int yCode => Animator.StringToHash(setting.yCode);
 
-        public PlayerAttributeController(Player owner, PlayerAttribute attribute)
+        public PlayerAttributeController(Player owner)
         {
             this.owner = owner;
-            this.attribute = attribute;
         }
 
         public void OnEnable()

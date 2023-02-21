@@ -1,4 +1,5 @@
 ﻿using Nico.Template;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using WeaponSys.WeaponSys;
 
@@ -6,7 +7,7 @@ namespace WeaponSys
 {
     public class Weapon : TemplateEntityMonoBehavior<Weapon>
     {
-        public WeaponData data;
+        [ShowInInspector] public WeaponData data;
 
         #region Component
 
@@ -28,7 +29,7 @@ namespace WeaponSys
         SpriteRenderer baseRenderer;
         GameObject weaponSpriteObj;
         SpriteRenderer weaponRenderer;
-        public Player player;
+        public Player player { get; private set; }
 
         #endregion
 
@@ -55,13 +56,13 @@ namespace WeaponSys
 
         protected override void _init_controller()
         {
-            baseAc = new BaseAnimController(this);
+            baseAc = new BaseAnimController(this,baseRenderer);
             controllers.Add(baseAc);
 
             var weaponSprite = new WeaponAnimController(this, baseRenderer, weaponRenderer);
             controllers.Add(weaponSprite);
 
-            var weaponMove = new MoveController(this, rb);
+            var weaponMove = new AttackMoveController(this, rb);
             controllers.Add(weaponMove);
         }
 

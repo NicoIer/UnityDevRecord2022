@@ -8,8 +8,8 @@ namespace Nico.Template
 {
     public abstract class TemplateEntityMonoBehavior<T> : MonoBehaviour
     {
-        [ShowInInspector, ReadOnly] protected readonly List<IController<T>> controllers = new();
-        [ShowInInspector, ReadOnly] protected readonly List<IComponent<T>> components = new();
+        [ShowInInspector] protected readonly List<IController<T>> controllers = new();
+        [ShowInInspector] protected readonly List<IComponent<T>> components = new();
 
 
         public T1 GetIComponent<T1>() where T1 : IComponent<T>

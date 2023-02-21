@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Nico.Algorithm;
 using Nico.Utils.Core;
 using UnityEngine;
 using WeaponSys.State;
@@ -25,11 +26,14 @@ namespace WeaponSys
         private AnimationEventHandler animationEventHandler => owner.animationEventHandler;
         private CancellationTokenSource cancellationTokenSource = new();
         private Animator ac => owner.ac;
+
+        private SpriteRenderer renderer;
         public bool playing { get; private set; } = false;
 
-        public BaseAnimController(Weapon owner)
+        public BaseAnimController(Weapon owner,SpriteRenderer renderer)
         {
             this.owner = owner;
+            this.renderer = renderer;
         }
 
         public void OnEnable()
@@ -66,6 +70,14 @@ namespace WeaponSys
             _cancel_cool_down();
             ++curAttackIndex;
             curAttackIndex %= owner.data.numOfAttack;
+            if (owner.player.attribute.facingDirection == Direction2DEnum.Left)
+            {
+                renderer.flipX = true;
+            }
+            else
+            {
+                renderer.flipX = false;
+            }
             //设置武器攻击动画
             ac.SetBool("activate", true);
             ac.SetInteger("count", curAttackIndex);

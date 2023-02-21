@@ -1,4 +1,5 @@
-﻿using Nico.Template;
+﻿using Nico.Algorithm;
+using Nico.Template;
 using Nico.Utils.Core;
 using UnityEngine;
 

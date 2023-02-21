@@ -5,13 +5,12 @@ using UnityEngine;
 
 namespace WeaponSys
 {
-    public class MoveController : IController<Weapon>
+    public class AttackMoveController : IController<Weapon>
     {
         public Weapon owner { get; }
         
         private Direction2DEnum facingDirection => owner.player.attribute.facingDirection;
-
-        //ToDo 这样的方式不好,应该使用一个IComponet来存储数据,然后实现一个对应的Controller来通过Component来控制RB的速度
+        
         private readonly Rigidbody2D rb;
         private Vector2 velocity;
         private SwordAttackData curAttackData;
@@ -19,7 +18,7 @@ namespace WeaponSys
 
         private bool stopMove = true;
 
-        public MoveController(Weapon owner, Rigidbody2D rb)
+        public AttackMoveController(Weapon owner, Rigidbody2D rb)
         {
             this.owner = owner;
             this.rb = rb;
@@ -57,7 +56,8 @@ namespace WeaponSys
             {
                 var offset = curAttackData.offsets[curAttackIndex].normalized;
                 var speed = curAttackData.speeds[curAttackIndex];
-                velocity = facing * offset * speed;
+                velocity = offset * speed;
+                velocity.x *= facing;
             }
             catch (ArgumentOutOfRangeException)
             {

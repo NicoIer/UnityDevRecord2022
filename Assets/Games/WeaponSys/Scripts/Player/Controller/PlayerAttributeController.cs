@@ -43,7 +43,7 @@ namespace WeaponSys
                 attribute.facingDirection = Direction2DEnum.Left;
                 ac.SetFloat(XCode, -1);
             }
-
+            attribute.velocity = move;
             attribute.state = owner.stateMachine.curState.GetType().Name;
         }
 

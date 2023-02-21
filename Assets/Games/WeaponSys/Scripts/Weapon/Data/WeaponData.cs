@@ -8,8 +8,8 @@ namespace WeaponSys
     /// <summary>
     /// 后续改成DataTable + Data->string->查找资源的形式
     /// </summary>
-    [Serializable]
-    public class WeaponData
+    [CreateAssetMenu(fileName = "WeaponData", menuName = "WeaponSys/WeaponData", order = 0)]
+    public class WeaponData: ScriptableObject
     {
         public int ID;
         public Sprite icon;

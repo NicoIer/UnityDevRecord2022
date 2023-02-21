@@ -185,6 +185,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 10081b434cc130f4e89664d03f11e1f0,
+        type: 2}
+    - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
+        type: 3}
       propertyPath: data.swordAttackData.speeds.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
@@ -1093,7 +1099,7 @@ PrefabInstance:
         type: 3}
       propertyPath: data
       value: 
-      objectReference: {fileID: 11400000, guid: c6053ba0490ea194ba1f30c2fa9a2edb,
+      objectReference: {fileID: 11400000, guid: 08ccefd61a105a543883abea3726181b,
         type: 2}
     - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}
@@ -1144,6 +1150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: data.swordAttackData.offsets.Array.data[0].x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
+        type: 3}
+      propertyPath: data.swordAttackData.offsets.Array.data[0].y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 368641804670989940, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}
@@ -1293,7 +1304,7 @@ PrefabInstance:
     - target: {fileID: 6470825293011699881, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.99
       objectReference: {fileID: 0}
     - target: {fileID: 6470825293011699881, guid: fa251694fc6feeb4bac3f2738a14b2ff,
         type: 3}

@@ -44,12 +44,13 @@ namespace RPG
         protected override void _init_components()
         {
             input = new PlayerInput(this);
+            attribute = new PlayerAttribute(this);
             components.Add(input);
         }
 
         protected override void _init_controller()
         {
-            attributeController = new PlayerAttributeController(this, attribute);
+            attributeController = new PlayerAttributeController(this);
             stateMachine = new PlayerStateMachine(this);
             controllers.Add(attributeController);
             controllers.Add(stateMachine);
