@@ -12,22 +12,37 @@ namespace WeaponSys
 {
     public class Weapon : MonoBehaviour
     {
-
-        public Animator ac { get; private set; }
         public WeaponData data;
         public NormalControls oper { get; private set; }
+
+        #region Component
 
         public AnimationEventHandler animationEventHandler { get; private set; }
 
         [ShowInInspector] private readonly List<IComponent<Weapon>> components = new();
 
+        #endregion
+
+
+        #region Controller
+
         public AnimController animController { get; private set; }
         [ShowInInspector] private readonly List<IController<Weapon>> controllers = new();
 
+        #endregion
+
+        #region Mono Components
+
+        public Animator ac { get; private set; }
+        public Rigidbody2D rb { get; private set; }
         GameObject baseObj;
         SpriteRenderer baseRenderer;
         GameObject weaponSpriteObj;
         SpriteRenderer weaponRenderer;
+
+        #endregion
+
+        #region Init
 
         private void Awake()
         {
@@ -47,15 +62,26 @@ namespace WeaponSys
 
             weaponSpriteObj = transform.Find("WeaponSprite").gameObject;
             weaponRenderer = weaponSpriteObj.GetComponent<SpriteRenderer>();
+
+            rb = GetComponent<Rigidbody2D>();
         }
 
         private void _init_controller()
         {
             animController = new AnimController(this);
             controllers.Add(animController);
+
             var weaponSprite = new SpriteController(this, baseRenderer, weaponRenderer);
             controllers.Add(weaponSprite);
+
+            var weaponMove = new MoveController(this, rb);
+            controllers.Add(weaponMove);
         }
+
+        #endregion
+
+
+        #region Contoller Cycle
 
         private void Start()
         {
@@ -100,11 +126,13 @@ namespace WeaponSys
             {
                 component.OnDisable();
             }
-            
+
             foreach (var controller in controllers)
             {
                 controller.OnDisable();
             }
         }
+
+        #endregion
     }
 }

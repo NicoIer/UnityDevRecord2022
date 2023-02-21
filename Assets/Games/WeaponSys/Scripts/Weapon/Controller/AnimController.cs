@@ -11,7 +11,7 @@ namespace WeaponSys
     /// </summary>
     public class AnimController : IController<Weapon>
     {
-        public int curAttackCount;
+        public int curAttackIndex;
 
         #region Events
 
@@ -60,15 +60,14 @@ namespace WeaponSys
 
         private void _player_anim()
         {
-            Debug.Log("enter");
             playing = true;
 
             _cancel_cool_down();
-            ++curAttackCount;
-            curAttackCount %= owner.data.numOfAttack;
+            ++curAttackIndex;
+            curAttackIndex %= owner.data.numOfAttack;
             //设置武器攻击动画
             ac.SetBool("activate", true);
-            ac.SetInteger("count", curAttackCount);
+            ac.SetInteger("count", curAttackIndex);
             //更新武器攻击次数
 
             //
@@ -78,7 +77,6 @@ namespace WeaponSys
         //退出时新建计时器
         private void _anim_exit()
         {
-            Debug.Log("exit");
             playing = false;
             ac.SetBool("activate", false);
             _start_cool_down();
@@ -99,8 +97,8 @@ namespace WeaponSys
                     cancellationToken: cancellationTokenSource.Token)
                 .ContinueWith(() =>
                 {
-                    curAttackCount = 0;
-                    ac.SetInteger("count", curAttackCount);
+                    curAttackIndex = 0;
+                    ac.SetInteger("count", curAttackIndex);
                 }).Forget();
         }
 

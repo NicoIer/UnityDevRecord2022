@@ -1,4 +1,7 @@
-﻿using Nico.Utils.Core;
+﻿using System;
+using Nico.Algorithm;
+using Nico.Utils.Core;
+using UnityEngine;
 
 namespace WeaponSys
 {
@@ -6,29 +9,71 @@ namespace WeaponSys
     {
         public Weapon owner { get; }
 
-        public MoveController(Weapon owner)
+        public Direction2DEnum facingDirection { get; private set; } = Direction2DEnum.Right;
+
+        //ToDo 这样的方式不好,应该使用一个IComponet来存储数据,然后实现一个对应的Controller来通过Component来控制RB的速度
+        private readonly Rigidbody2D rb;
+        private Vector2 velocity;
+        private SwordAttackData curAttackData;
+        private AnimationEventHandler animationEventHandler => owner.animationEventHandler;
+
+        private bool stopMove = true;
+
+        public MoveController(Weapon owner, Rigidbody2D rb)
         {
             this.owner = owner;
+            this.rb = rb;
         }
 
         public void OnEnable()
         {
-            owner.animationEventHandler.OnStartMove += _handle_start_move;
-            owner.animationEventHandler.OnStopMove += _handle_stop_move;
+            animationEventHandler.OnStartMove += _handle_start_move;
+            animationEventHandler.OnStopMove += _handle_stop_move;
         }
 
         public void OnDisable()
         {
-            owner.animationEventHandler.OnStartMove -= _handle_start_move;
-            owner.animationEventHandler.OnStopMove -= _handle_stop_move;
+            animationEventHandler.OnStartMove -= _handle_start_move;
+            animationEventHandler.OnStopMove -= _handle_stop_move;
         }
 
         private void _handle_start_move()
         {
+            stopMove = false;
+            int facing = 1;
+            switch (facingDirection)
+            {
+                case Direction2DEnum.Right:
+                    facing = 1;
+                    break;
+                case Direction2DEnum.Left:
+                    facing = -1;
+                    break;
+            }
+
+            curAttackData = owner.data.swordAttackData;
+            var curAttackIndex = owner.animController.curAttackIndex;
+            try
+            {
+                var offset = curAttackData.offsets[curAttackIndex].normalized;
+                var speed = curAttackData.speeds[curAttackIndex];
+                velocity = facing * offset * speed;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                velocity = Vector2.zero;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                velocity = Vector2.zero;
+            }
         }
 
         private void _handle_stop_move()
         {
+            stopMove = true;
+            velocity = Vector2.zero;
         }
 
         public void Start()
@@ -41,6 +86,10 @@ namespace WeaponSys
 
         public void FixedUpdate()
         {
+            if(!stopMove)
+                 rb.MovePosition(rb.position + velocity * Time.deltaTime);
+                //rb.velocity = velocity;
+            // 
         }
     }
 }

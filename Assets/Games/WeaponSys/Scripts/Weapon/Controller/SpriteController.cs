@@ -1,4 +1,5 @@
-﻿using Nico.Utils.Core;
+﻿using System;
+using Nico.Utils.Core;
 using UnityEngine;
 
 namespace WeaponSys.Components
@@ -40,12 +41,19 @@ namespace WeaponSys.Components
             baseRenderer.RegisterSpriteChangeCallback(_on_sprite_change);
 
             owner.animController.onEnter += _on_anim_enter;
+            owner.animController.OnExit += _on_anim_exit;
         }
 
         public void OnDisable()
         {
             baseRenderer.UnregisterSpriteChangeCallback(_on_sprite_change);
             owner.animController.onEnter -= _on_anim_enter;
+            owner.animController.OnExit += _on_anim_exit;
+        }
+
+        private void _on_anim_exit()
+        {
+            weaponRenderer.sprite = null;
         }
 
         /// <summary>
@@ -62,7 +70,7 @@ namespace WeaponSys.Components
                 return;
             }
 
-            var curAnim = owner.data.attackAnim[owner.animController.curAttackCount].sprites;
+            var curAnim = owner.data.attackAnim[owner.animController.curAttackIndex].sprites;
             if (currentSpriteIndex >= curAnim.Count)
             {
                 Debug.Log($"{owner.name} weapon sprite index out of range {currentSpriteIndex}");

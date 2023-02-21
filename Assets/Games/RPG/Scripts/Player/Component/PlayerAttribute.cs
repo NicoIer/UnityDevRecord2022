@@ -8,7 +8,7 @@ using UnityEngine;
 namespace RPG
 {
     /// <summary>
-    /// 这里是角色的属性 但是用Controller不是很好 ToDo 准备重构 
+    /// 这里是角色的属性
     /// </summary>
     [Serializable]
     public class PlayerAttribute : IComponent<Player>
