@@ -72,12 +72,6 @@ namespace WeaponSys
             if (detectResult.Length > 0)
             {
                 OnDetectHitBox?.Invoke(detectResult);
-#if NICO_DEBUGD
-            foreach (var collider2D in detectResult)
-                {
-                    Debug.Log(collider2D.name);
-                }
-#endif
             }
         }
     }

@@ -9,7 +9,7 @@ namespace WeaponSys
     /// 后续改成DataTable + Data->string->查找资源的形式
     /// </summary>
     [CreateAssetMenu(fileName = "WeaponData", menuName = "WeaponSys/WeaponData", order = 0)]
-    public class WeaponData: ScriptableObject
+    public class WeaponData: DataContainer
     {
         public int ID;
         public Sprite icon;
@@ -47,6 +47,8 @@ namespace WeaponSys
         public SwordAttackMoveData swordAttackMoveData;
 
         public HitBoxData hitBoxData;
+
+        public AttackDamageData damageData;
 
 
     }

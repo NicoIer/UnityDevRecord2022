@@ -43,3 +43,8 @@ MonoBehaviour:
     <detectLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 64
+  damageData:
+    <anmount>k__BackingField:
+    - 1
+    - 11
+    - 111

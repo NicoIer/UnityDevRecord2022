@@ -70,6 +70,9 @@ namespace WeaponSys
 
             var hitBox = new HitBoxController(this);
             controllers.Add(hitBox);
+            
+            var attackDamage = new AttackDamageController(this);
+            controllers.Add(attackDamage);
         }
 
         #endregion
