@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using Nico.Utils.Core;
+using Nico.Template;
 using RPG.Controller;
 using RPG.Setting;
 using UnityEngine;
 
 namespace RPG
 {
-    public class Player : MonoBehaviour
+    public class Player : TemplateEntityMonoBehavior<Player>
     {
         [field: SerializeField] public PlayerSetting setting { get; private set; }
 
@@ -24,7 +23,6 @@ namespace RPG
 
         [field: SerializeField] public PlayerStateMachine stateMachine { get; private set; }
         [field: SerializeField] public PlayerAttributeController attributeController { get; private set; }
-        private readonly List<IController<Player>> controllers = new();
 
         #endregion
 
@@ -32,34 +30,24 @@ namespace RPG
 
         [field: SerializeField] public PlayerAttribute attribute { get; private set; }
         public PlayerInput input { get; private set; }
-        private readonly List<IComponent<Player>> components = new();
 
         #endregion
 
 
-        #region Life Time
-
-        private void Awake()
-        {
-            _get_mono_components();
-            _init_components();
-            _init_controller();
-        }
-
-        private void _get_mono_components()
+        protected override void _get_mono_components()
         {
             rb = GetComponent<Rigidbody2D>();
             col = GetComponent<Collider2D>();
             ac = GetComponent<Animator>();
         }
 
-        private void _init_components()
+        protected override void _init_components()
         {
             input = new PlayerInput(this);
             components.Add(input);
         }
 
-        private void _init_controller()
+        protected override void _init_controller()
         {
             attributeController = new PlayerAttributeController(this, attribute);
             stateMachine = new PlayerStateMachine(this);
@@ -67,57 +55,6 @@ namespace RPG
             controllers.Add(stateMachine);
         }
 
-        private void Start()
-        {
-            foreach (var controller in controllers)
-            {
-                controller.Start();
-            }
-        }
-
-        private void Update()
-        {
-            foreach (var component in controllers)
-            {
-                component.Update();
-            }
-        }
-
-        private void FixedUpdate()
-        {
-            foreach (var component in controllers)
-            {
-                component.FixedUpdate();
-            }
-        }
-
-        private void OnEnable()
-        {
-            foreach (var component in components)
-            {
-                component.OnEnable();
-            }
-
-            foreach (var component in controllers)
-            {
-                component.OnEnable();
-            }
-        }
-
-        private void OnDisable()
-        {
-            foreach (var component in components)
-            {
-                component.OnDisable();
-            }
-
-            foreach (var component in controllers)
-            {
-                component.OnDisable();
-            }
-        }
-
-        #endregion
 
         #region Event
 
