@@ -23,5 +23,11 @@ namespace ShootGame
 
             Change<IdleState>();
         }
+
+        public override void Change<T1>()
+        {
+            base.Change<T1>();
+            owner.attribute.state = curState.GetType().Name;
+        }
     }
 }

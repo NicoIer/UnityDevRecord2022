@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace ShootGame
 {
+    [Serializable]
     public class PlayerAttribute: IComponent<Player>
     {
         private Direction2DEnum _facingDirection;
@@ -40,6 +41,7 @@ namespace ShootGame
         
         public Vector2 velocity;
         private static readonly int FacingRight = Animator.StringToHash("facingRight");
+        public string state;
         public Player owner { get; set; }
 
         public PlayerAttribute(Player owner)

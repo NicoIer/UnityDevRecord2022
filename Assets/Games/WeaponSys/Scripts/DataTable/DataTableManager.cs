@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Nico.Data
 {
     public class DataTableManager : MonoBehaviour
     {
+        [field: SerializeField]private List<DataTable> dataTables = new List<DataTable>();
         public static DataTableManager instance;
         public AnimDataTable animDataTable;
         public SwordMetaDataTable swordMetaDataTable;
@@ -23,9 +25,9 @@ namespace Nico.Data
         }
         
         
-        public static T GetDataTable<T>() where T : DataTable
+        public T GetDataTable<T>() where T : DataTable
         {
-            throw new NotImplementedException();
+            return dataTables.OfType<T>().First();
         }
     }
 }

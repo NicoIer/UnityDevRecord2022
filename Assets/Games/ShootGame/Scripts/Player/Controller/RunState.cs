@@ -12,6 +12,7 @@ namespace ShootGame
         private readonly PlayerMoveData data;
         private PlayerAttribute attribute => owner.attribute;
         private Animator ac => owner.ac;
+
         public RunState(Player owner, IStateMachine<Player> machine, string animParam) : base(owner, machine, animParam)
         {
             data = owner.data.GetDataElement<PlayerMoveData>();
@@ -24,12 +25,7 @@ namespace ShootGame
                 Change<IdleState>();
                 return;
             }
-        }
 
-        public override void FixedUpdate()
-        {
-            velocity.x = move.x * data.xSpeed;
-            velocity.y = move.y * data.ySpeed;
             var facing = attribute.facingDirection;
             if (move.x > 0 && facing == Direction2DEnum.Left)
             {
@@ -39,21 +35,28 @@ namespace ShootGame
             {
                 attribute.facingDirection = Direction2DEnum.Left;
             }
+        }
+
+        public override void FixedUpdate()
+        {
+            velocity.x = move.x * data.xSpeed;
+            velocity.y = move.y * data.ySpeed;
+
 
             attribute.velocity = velocity;
             owner.rb.MovePosition(owner.rb.position + velocity * Time.fixedDeltaTime);
         }
 
         public override void Exit()
-        { 
+        {
             // ac.ResetTrigger(animParam);
-            ac.SetBool(animParam,false);
+            ac.SetBool(animParam, false);
         }
 
         public override void Enter()
         {
             // ac.SetTrigger(animParam);
-            ac.SetBool(animParam,true);
+            ac.SetBool(animParam, true);
         }
     }
 }

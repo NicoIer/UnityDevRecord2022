@@ -38,7 +38,7 @@ namespace Nico.ECC.Template
 
         public abstract void OnDisable();
 
-        public void Change<T1>() where T1 : IState<T>
+        public virtual void Change<T1>() where T1 : IState<T>
         {
             Debug.Log($"change state!! from{curState?.GetType()}to{typeof(T1)}");
             curState?.Exit();

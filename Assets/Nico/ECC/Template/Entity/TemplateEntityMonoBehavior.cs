@@ -38,6 +38,18 @@ namespace Nico.ECC.Template
             return controllers.Any(controller => controller.GetType() == type);
         }
 
+
+        public void Add(IComponent<T> component)
+        {
+            components.Add(component);
+        }
+
+        public void Add(IController<T> controller)
+        {
+            controllers.Add(controller);
+        }
+
+
         public void AddComponent(IComponent<T> component)
         {
             components.Add(component);
@@ -196,7 +208,6 @@ namespace Nico.ECC.Template
                     controller.Update();
                 }
             }
-
         }
 
         protected virtual void FixedUpdate()
@@ -208,7 +219,6 @@ namespace Nico.ECC.Template
                     component.FixedUpdate();
                 }
             }
-
         }
 
         protected virtual void OnEnable()
