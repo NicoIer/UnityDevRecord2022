@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Nico.ECC.Dependency
 {
-    public abstract class DataContainer : ScriptableObject
+    public abstract class DataContainer: ScriptableObject
     {
         [field: SerializeReference] public List<DataElement> dataElements = new List<DataElement>();
 

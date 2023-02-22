@@ -8,6 +8,11 @@ namespace Nico.ECC.Template
         public IStateMachine<T> machine { get; set; }
         protected readonly int animParam;
 
+        protected void Change<T1>() where T1 : IState<T>
+        {
+            machine.Change<T1>();
+        }
+
         protected TemplateState(T owner, IStateMachine<T> machine, string animParam)
         {
             this.owner = owner;
