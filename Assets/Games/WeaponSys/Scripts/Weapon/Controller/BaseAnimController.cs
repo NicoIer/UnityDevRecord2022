@@ -27,13 +27,12 @@ namespace WeaponSys
         private CancellationTokenSource cancellationTokenSource = new();
         private Animator ac => owner.ac;
 
-        private SpriteRenderer renderer;
+        private SpriteRenderer renderer=>owner.baseRenderer;
         public bool playing { get; private set; } = false;
 
-        public BaseAnimController(Weapon owner,SpriteRenderer renderer)
+        public BaseAnimController(Weapon owner)
         {
             this.owner = owner;
-            this.renderer = renderer;
         }
 
         public void OnEnable()

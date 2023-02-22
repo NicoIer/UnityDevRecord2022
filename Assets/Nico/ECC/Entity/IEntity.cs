@@ -1,6 +1,6 @@
 ﻿namespace Nico.ECC
 {
-    public interface IEnity
+    public interface IEntity
     {
         
     }

@@ -29,9 +29,9 @@ namespace WeaponSys
         public Animator ac { get; private set; }
         public Rigidbody2D rb { get; private set; }
         GameObject baseObj;
-        SpriteRenderer baseRenderer;
+        public SpriteRenderer baseRenderer { get; private set; }
         GameObject weaponSpriteObj;
-        SpriteRenderer weaponRenderer;
+        public SpriteRenderer weaponRenderer { get; private set; }
         public Player player { get; private set; }
 
         #endregion
@@ -59,18 +59,18 @@ namespace WeaponSys
 
         protected override void _init_controller()
         {
-            baseAc = new BaseAnimController(this, baseRenderer);
+            baseAc = new BaseAnimController(this);
             controllers.Add(baseAc);
 
-            var weaponSprite = new WeaponAnimController(this, baseRenderer, weaponRenderer);
+            var weaponSprite = new WeaponAnimController(this);
             controllers.Add(weaponSprite);
 
-            var weaponMove = new AttackMoveController(this, rb);
+            var weaponMove = new AttackMoveController(this);
             controllers.Add(weaponMove);
 
             var hitBox = new HitBoxController(this);
             controllers.Add(hitBox);
-            
+
             var attackDamage = new AttackDamageController(this);
             controllers.Add(attackDamage);
         }
@@ -81,7 +81,7 @@ namespace WeaponSys
         private void OnDrawGizmos()
         {
 #if NICO_DEBUGD
-            foreach (var hitBox in data.hitBoxData.HitBox)
+            foreach (var hitBox in data.GetDataElement<HitBoxData>().HitBox)
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireCube(transform.position + (Vector3)hitBox.position, hitBox.size);

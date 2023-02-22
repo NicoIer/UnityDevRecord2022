@@ -6,7 +6,7 @@
     /// <typeparam name="T"></typeparam>
     public interface IController<T>
     {
-        T owner { get; }
+        T owner { get;}
         void OnEnable();
         void OnDisable();
         void Start();

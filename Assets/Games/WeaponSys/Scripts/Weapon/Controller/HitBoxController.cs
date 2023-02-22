@@ -10,7 +10,7 @@ namespace WeaponSys
     {
         public Weapon owner { get; }
         private int curAttackIndex => owner.baseAc.curAttackIndex;
-        private HitBoxData data => owner.data.hitBoxData;
+        private HitBoxData data => owner.data.GetDataElement<HitBoxData>();
 
         private Vector2 offset;
         private Collider2D[] detectResult;
@@ -65,8 +65,8 @@ namespace WeaponSys
             }
 
             offset.Set(
-                position.x + owner.data.hitBoxData.HitBox[curAttackIndex].center.x * facing,
-                position.y + owner.data.hitBoxData.HitBox[curAttackIndex].center.y
+                position.x + data.HitBox[curAttackIndex].center.x * facing,
+                position.y + data.HitBox[curAttackIndex].center.y
             );
             detectResult = Physics2D.OverlapBoxAll(offset, data.HitBox[curAttackIndex].size, 0, data.detectLayer);
             if (detectResult.Length > 0)

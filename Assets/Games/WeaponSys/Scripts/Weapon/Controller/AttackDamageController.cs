@@ -7,8 +7,8 @@ namespace WeaponSys
     public class AttackDamageController : IController<Weapon>
     {
         public Weapon owner { get; }
-        private HitBoxController hitBoxController;
-
+        private readonly HitBoxController hitBoxController;
+        private AttackDamageData data=>owner.data.GetDataElement<AttackDamageData>();
         public AttackDamageController(Weapon owner)
         {
             this.owner = owner;
@@ -21,7 +21,7 @@ namespace WeaponSys
             {
                 if (collider2D.TryGetComponent(out IDamageAble damageAble))
                 {
-                    damageAble.TakeDamage(owner.data.damageData[owner.baseAc.curAttackIndex]);
+                    damageAble.TakeDamage(data[owner.baseAc.curAttackIndex]);
                 }
             }
         }
@@ -38,7 +38,7 @@ namespace WeaponSys
 
         public void Start()
         {
-            hitBoxController = owner.GetIController<HitBoxController>();
+           
         }
 
         public void Update()

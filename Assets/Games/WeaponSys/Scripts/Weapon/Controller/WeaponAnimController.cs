@@ -1,4 +1,5 @@
 ﻿using Nico.Algorithm;
+using Nico.Data;
 using Nico.ECC;
 using UnityEngine;
 
@@ -12,15 +13,13 @@ namespace WeaponSys
         public class WeaponAnimController : IController<Weapon>
         {
             public Weapon owner { get; }
-            private readonly SpriteRenderer baseRenderer;
-            private readonly SpriteRenderer weaponRenderer;
+            private SpriteRenderer baseRenderer=>owner.baseRenderer;
+            private SpriteRenderer weaponRenderer=>owner.weaponRenderer;
             private int currentSpriteIndex;
 
-            public WeaponAnimController(Weapon owner, SpriteRenderer baseRenderer, SpriteRenderer weaponRenderer)
+            public WeaponAnimController(Weapon owner)
             {
                 this.owner = owner;
-                this.baseRenderer = baseRenderer;
-                this.weaponRenderer = weaponRenderer;
                 currentSpriteIndex = 0;
             }
 
@@ -71,7 +70,7 @@ namespace WeaponSys
                     weaponRenderer.sprite = null;
                     return;
                 }
-
+                
                 var curAnim = owner.data.attackAnim[owner.baseAc.curAttackIndex].sprites;
                 if (currentSpriteIndex >= curAnim.Count)
                 {

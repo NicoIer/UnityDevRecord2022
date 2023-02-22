@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Nico.ECC;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Nico.ECC.Template
 {
-    public abstract class TemplateEntityMonoBehavior<T> : MonoBehaviour,IEnity
+    public abstract class TemplateEntityMonoBehavior<T> : MonoBehaviour,IEntity
     {
         [ShowInInspector] protected readonly List<IController<T>> controllers = new();
         [ShowInInspector] protected readonly List<IComponent<T>> components = new();
@@ -23,6 +23,28 @@ namespace Nico.ECC.Template
             return controllers.OfType<T1>().First();
         }
 
+
+        public bool HasComponent(Type type)
+        {
+            return components.Any(component => component.GetType() == type);
+        }
+        
+        public bool HasController(Type type)
+        {
+            return controllers.Any(controller => controller.GetType() == type);
+        }
+        
+        public void AddComponent(IComponent<T> component)
+        {
+            components.Add(component);
+        }
+
+        public void AddController(IController<T> controller)
+        {
+            controllers.Add(controller);
+        }
+        
+        
         #region Init
 
         private void Awake()

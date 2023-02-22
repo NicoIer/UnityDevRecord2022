@@ -11,17 +11,15 @@ namespace WeaponSys
 
         private Direction2DEnum facingDirection => owner.player.attribute.facingDirection;
 
-        private readonly Rigidbody2D rb;
+        private Rigidbody2D rb=>owner.rb;
         private Vector2 velocity;
-        private SwordAttackMoveData curAttackMoveData;
+        private SwordAttackMoveData curAttackMoveData=>owner.data.GetDataElement<SwordAttackMoveData>();
         private AnimationEventHandler animationEventHandler => owner.animationEventHandler;
-
         private bool stopMove = true;
 
-        public AttackMoveController(Weapon owner, Rigidbody2D rb)
+        public AttackMoveController(Weapon owner)
         {
             this.owner = owner;
-            this.rb = rb;
         }
 
         public void OnEnable()
@@ -40,8 +38,7 @@ namespace WeaponSys
         {
             stopMove = false;
 
-
-            curAttackMoveData = owner.data.swordAttackMoveData;
+            
             var curAttackIndex = owner.baseAc.curAttackIndex;
             //这里会根据玩家的此帧的输入朝向朝向来决定攻击的方向
 

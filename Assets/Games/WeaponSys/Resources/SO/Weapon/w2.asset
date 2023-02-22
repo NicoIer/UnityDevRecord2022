@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 231649fef8d54c5b9923558b7a12d1db, type: 3}
   m_Name: w2
   m_EditorClassIdentifier: 
+  dataElements:
+  - rid: 7107814310149357583
+  - rid: 7107814310149357584
+  - rid: 7107814310149357585
   ID: 1
   icon: {fileID: 0}
   swordAttackMoveData:
@@ -48,3 +52,46 @@ MonoBehaviour:
     - 1
     - 11
     - 111
+  references:
+    version: 2
+    RefIds:
+    - rid: 7107814310149357583
+      type: {class: HitBoxData, ns: WeaponSys, asm: Assembly-CSharp}
+      data:
+        <HitBox>k__BackingField:
+        - serializedVersion: 2
+          x: 0
+          y: -1
+          width: 1.95
+          height: 1.5
+        - serializedVersion: 2
+          x: 0.1
+          y: -1
+          width: 2
+          height: 1.5
+        - serializedVersion: 2
+          x: 0
+          y: -1
+          width: 1.6
+          height: 2.5
+        <detectLayer>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 64
+    - rid: 7107814310149357584
+      type: {class: AttackDamageData, ns: WeaponSys, asm: Assembly-CSharp}
+      data:
+        <anmount>k__BackingField:
+        - 3
+        - 4
+        - 5
+    - rid: 7107814310149357585
+      type: {class: SwordAttackMoveData, ns: WeaponSys, asm: Assembly-CSharp}
+      data:
+        offsets:
+        - {x: 1, y: 0}
+        - {x: 1, y: 0}
+        - {x: 1, y: 1}
+        speeds:
+        - 1
+        - 1
+        - 1
