@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: WeaponData
   m_EditorClassIdentifier: 
   dataElements: []
-  animStorageID: 6
+  meta:
+    id: 0
+    name: 
+    animStorageID: 7
+    attackInterval: 0
   rightPostion: {x: 0.39, y: -0.31, z: 0}
   leftPostion: {x: -0.46, y: -0.31, z: 0}
   references:

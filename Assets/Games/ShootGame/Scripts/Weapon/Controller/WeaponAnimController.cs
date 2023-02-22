@@ -39,10 +39,10 @@ namespace ShootGame
 
         private void _on_spite_change(SpriteRenderer re)
         {
-            Debug.Log(curSpriteIndex);
             if (curSpriteIndex >= animStorage.sprites.Count)
             {
                 Debug.Log("索引越界");
+                gunRe.sprite = null;
                 return;
             }
 
