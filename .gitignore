@@ -59,5 +59,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-#
+#Example of user specific files
 /Assets/LearningExamples/
+/Assets/Plugins/Mirror/Examples/
