@@ -12,6 +12,8 @@ namespace Nico.ECC.Template
         public bool leftAttack => controls.Player.SpecialAttack.triggered;
         public Vector2 mousePostion => Mouse.current.position.ReadValue();
         public Vector2 arrow => controls.Player.Arrow.ReadValue<Vector2>();
+        public Vector2 rotate => controls.Player.Rotate.ReadValue<Vector2>();
+
         public TemplateInput(T owner)
         {
             this.owner = owner;

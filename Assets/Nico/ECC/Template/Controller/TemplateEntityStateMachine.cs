@@ -40,7 +40,7 @@ namespace Nico.ECC.Template
 
         public virtual void Change<T1>() where T1 : IState<T>
         {
-            Debug.Log($"change state!! from{curState?.GetType()}to{typeof(T1)}");
+            // Debug.Log($"change state!! from{curState?.GetType()}to{typeof(T1)}");
             curState?.Exit();
             curState = states[typeof(T1)];
             curState?.Enter();

@@ -51,7 +51,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Roatate",
+                    "name": "Rotate",
                     "type": "Value",
                     "id": "2687191c-8d6b-4959-ae66-d5196a87a805",
                     "expectedControlType": "Vector2",
@@ -354,7 +354,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roatate",
+                    "action": "Rotate",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -365,7 +365,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roatate",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -376,7 +376,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roatate",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -387,18 +387,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roatate",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
                     "id": "3d7dce92-1be5-4ac5-b30b-aeab83f46017",
-                    "path": "<Gamepad>/rightStick/down",
+                    "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roatate",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

@@ -73,7 +73,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Roatate"",
+                    ""name"": ""Rotate"",
                     ""type"": ""Value"",
                     ""id"": ""2687191c-8d6b-4959-ae66-d5196a87a805"",
                     ""expectedControlType"": ""Vector2"",
@@ -376,7 +376,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roatate"",
+                    ""action"": ""Rotate"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -387,7 +387,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roatate"",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -398,7 +398,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roatate"",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -409,18 +409,18 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roatate"",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
                     ""id"": ""3d7dce92-1be5-4ac5-b30b-aeab83f46017"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roatate"",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -458,7 +458,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
         m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Arrow = m_Player.FindAction("Arrow", throwIfNotFound: true);
-        m_Player_Roatate = m_Player.FindAction("Roatate", throwIfNotFound: true);
+        m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -525,7 +525,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpecialAttack;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Arrow;
-    private readonly InputAction m_Player_Roatate;
+    private readonly InputAction m_Player_Rotate;
     public struct PlayerActions
     {
         private @NormalControls m_Wrapper;
@@ -535,7 +535,7 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
         public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Arrow => m_Wrapper.m_Player_Arrow;
-        public InputAction @Roatate => m_Wrapper.m_Player_Roatate;
+        public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -560,9 +560,9 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
             @Arrow.started += instance.OnArrow;
             @Arrow.performed += instance.OnArrow;
             @Arrow.canceled += instance.OnArrow;
-            @Roatate.started += instance.OnRoatate;
-            @Roatate.performed += instance.OnRoatate;
-            @Roatate.canceled += instance.OnRoatate;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -582,9 +582,9 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
             @Arrow.started -= instance.OnArrow;
             @Arrow.performed -= instance.OnArrow;
             @Arrow.canceled -= instance.OnArrow;
-            @Roatate.started -= instance.OnRoatate;
-            @Roatate.performed -= instance.OnRoatate;
-            @Roatate.canceled -= instance.OnRoatate;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -618,6 +618,6 @@ public partial class @NormalControls: IInputActionCollection2, IDisposable
         void OnSpecialAttack(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnArrow(InputAction.CallbackContext context);
-        void OnRoatate(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
     }
 }
