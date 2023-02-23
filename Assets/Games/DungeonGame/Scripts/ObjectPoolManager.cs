@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Games.DungeonGame.Scripts
+namespace DungeonGame.Scripts
 {
     public class ObjectPoolManager : MonoBehaviour
     {

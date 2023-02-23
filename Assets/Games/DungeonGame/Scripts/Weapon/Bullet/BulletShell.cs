@@ -1,9 +1,10 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using DungeonGame.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Games.DungeonGame.Scripts.Weapon
+namespace DungeonGame
 {
     public class BulletShell : MonoBehaviour
     {

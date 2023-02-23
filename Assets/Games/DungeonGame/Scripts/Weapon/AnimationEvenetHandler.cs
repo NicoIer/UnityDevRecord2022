@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Games.DungeonGame.Scripts.Weapon
+namespace DungeonGame
 {
     public class AnimationEvenetHandler : MonoBehaviour
     {

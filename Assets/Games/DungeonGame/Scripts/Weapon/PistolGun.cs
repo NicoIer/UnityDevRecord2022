@@ -1,10 +1,12 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using DungeonGame.Controller;
+using DungeonGame.Scripts;
 using Nico.ECC.Template;
 using Nico.Utils;
 using UnityEngine;
 
-namespace Games.DungeonGame.Scripts.Weapon
+namespace DungeonGame
 {
     public class PistolGun : TemplateEntityMonoBehavior<PistolGun>
     {
@@ -13,7 +15,6 @@ namespace Games.DungeonGame.Scripts.Weapon
         //粒子效果
         private TemplateInput<PistolGun> input;
         private Animator ac;
-        public float bulletSpeed = 10;
         private bool canShoot = true;
         public WeaponData data;
 
@@ -30,21 +31,21 @@ namespace Games.DungeonGame.Scripts.Weapon
 
         protected override void _init_controller()
         {
-            
+            var facingMouse = new FacingMouse<PistolGun>(this);
+            Add(facingMouse);
         }
         
 
         protected override void Update()
         {
             base.Update();
-            var direction = Facing.Self2MouseDirection(transform,Camera.main);
-            Facing.Facing2DDirection(transform, direction);
             if (input.rightAttack && canShoot)
             {
+                var direction = Facing.Self2MouseDirection(transform,Camera.main);
                 _start_cool_down(); //开始冷却
                 ac.SetTrigger("attack"); //播放攻击动画
                 //发射子弹
-                _shoot_bullet(direction * bulletSpeed, shootTransform.position);
+                _shoot_bullet(direction * data.bulletSpeed, shootTransform.position);
                 //展示弹壳
                 var shell = ObjectPoolManager.instance.GetObject("shell").GetComponent<BulletShell>();
                 shell.Prop(shellTransform.position, shellTransform.rotation);

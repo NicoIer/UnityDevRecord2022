@@ -1,7 +1,8 @@
 ﻿using System;
+using DungeonGame.Scripts;
 using UnityEngine;
 
-namespace Games.DungeonGame.Scripts.Weapon
+namespace DungeonGame
 {
     public class Effect: MonoBehaviour
     {

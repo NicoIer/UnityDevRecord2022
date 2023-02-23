@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using DungeonGame.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Games.DungeonGame.Scripts.Weapon
+namespace DungeonGame
 {
     public class Bullet : MonoBehaviour
     {
@@ -48,7 +49,6 @@ namespace Games.DungeonGame.Scripts.Weapon
             }
             if(cancellationTokenSource != null)
                 cancellationTokenSource.Cancel();
-            Debug.Log(col.name);
             var effect = ObjectPoolManager.instance.GetObject("effect");
             var transform1 = transform;
             effect.transform.position = transform1.position;
