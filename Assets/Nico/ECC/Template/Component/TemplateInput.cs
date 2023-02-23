@@ -12,6 +12,7 @@ namespace Nico.ECC.Template
         public bool performRightAttack => controls.Player.NormalAttack.WasPerformedThisFrame();
         public bool releaseRightAttack => controls.Player.NormalAttack.WasReleasedThisFrame();
         public bool leftAttack => controls.Player.SpecialAttack.triggered;
+        public Vector2 rightStick => Gamepad.current.rightStick.ReadValue();
         public Vector2 mousePostion => Mouse.current.position.ReadValue();
         public Vector2 arrow => controls.Player.Arrow.ReadValue<Vector2>();
         // public Vector2 rotate => controls.Player.Rotate.ReadValue<Vector2>();

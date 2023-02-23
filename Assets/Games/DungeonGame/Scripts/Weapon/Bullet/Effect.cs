@@ -1,5 +1,5 @@
 ﻿using System;
-using DungeonGame.Scripts;
+using Nico;
 using UnityEngine;
 
 namespace DungeonGame

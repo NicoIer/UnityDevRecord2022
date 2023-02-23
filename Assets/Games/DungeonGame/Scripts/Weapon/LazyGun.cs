@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using DungeonGame.Controller;
 using Nico.ECC.Template;
 using Nico.Utils;
 using UnityEngine;
@@ -38,13 +39,13 @@ namespace DungeonGame
 
         protected override void _init_controller()
         {
+            var facing = new FacingRightStick<LazyGun>(this);
+            Add(facing);
         }
 
         protected override void Update()
         {
             base.Update();
-            var direction = Facing.Self2MouseDirection(transform, Camera.main);
-            Facing.Facing2DDirection(transform, direction);
             //在攻击时松开右键 则停止攻击
             if (input.releaseRightAttack && isShooting)
             {
@@ -69,7 +70,11 @@ namespace DungeonGame
             _particleSystem.Play();
             while (isShooting)
             {
-                var direction = Facing.Self2MouseDirection(transform, Camera.main);
+                var direction = input.rightStick;
+                if (direction == Vector2.zero)
+                {
+                    direction = Vector2.right;
+                }
                 var hit = Physics2D.Raycast(shootTransform.position, direction, 100, targetMask);
                 lazyLine.SetPosition(0, shootTransform.position);
                 lazyLine.SetPosition(1, hit.point);

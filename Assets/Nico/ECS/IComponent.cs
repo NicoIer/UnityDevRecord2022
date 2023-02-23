@@ -1,4 +1,4 @@
-﻿namespace Nico.ECS
+﻿namespace Nico
 {
     /// <summary>
     /// 组件是数据的集合

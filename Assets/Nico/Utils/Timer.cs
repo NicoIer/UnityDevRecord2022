@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace Nico.ECS.Useful
+namespace Nico
 {
     //ToDo 实现通用Timer
     public class Timer

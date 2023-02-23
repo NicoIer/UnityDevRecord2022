@@ -1,9 +1,8 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using DungeonGame.Controller;
-using DungeonGame.Scripts;
 using Nico.ECC.Template;
-using Nico.Utils;
+using Nico;
 using UnityEngine;
 
 namespace DungeonGame
@@ -31,7 +30,7 @@ namespace DungeonGame
 
         protected override void _init_controller()
         {
-            var facingMouse = new FacingMouse<PistolGun>(this);
+            var facingMouse = new FacingRightStick<PistolGun>(this);
             Add(facingMouse);
         }
         
@@ -41,7 +40,11 @@ namespace DungeonGame
             base.Update();
             if (input.rightAttack && canShoot)
             {
-                var direction = Facing.Self2MouseDirection(transform,Camera.main);
+                var direction = input.rightStick;
+                if (direction == Vector2.zero)
+                {
+                    direction = Vector2.right;
+                }
                 _start_cool_down(); //开始冷却
                 ac.SetTrigger("attack"); //播放攻击动画
                 //发射子弹

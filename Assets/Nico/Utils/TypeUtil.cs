@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nico.ECS
+namespace Nico
 {
     public static class TypeUtil
     {

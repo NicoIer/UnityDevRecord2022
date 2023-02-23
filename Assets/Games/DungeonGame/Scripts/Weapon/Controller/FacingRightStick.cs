@@ -2,12 +2,13 @@
 using Nico.ECC.Template;
 using Nico.Utils;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace DungeonGame.Controller
 {
-    public class FacingMouse<T> : TemplateController<T> where T : TemplateEntityMonoBehavior<T>
+    public class FacingRightStick<T> : TemplateController<T> where T : TemplateEntityMonoBehavior<T>
     {
-        public FacingMouse(T owner) : base(owner)
+        public FacingRightStick(T owner) : base(owner)
         {
         }
 
@@ -28,7 +29,7 @@ namespace DungeonGame.Controller
 
         public override void Update()
         {
-            var direction = Facing.Self2MouseDirection(owner.transform,Camera.main);
+            var direction = Gamepad.current.rightStick.ReadValue();
             Facing.Facing2DDirection(owner.transform, direction);
         }
 

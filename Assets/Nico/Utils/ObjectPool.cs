@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DungeonGame.Scripts
+namespace Nico
 {
     public class ObjectPool : MonoBehaviour
     {
         public GameObject prefab;
-        private Queue<GameObject> pool = new Queue<GameObject>();
+        private Queue<GameObject> pool = new();
 
         private void Start()
         {

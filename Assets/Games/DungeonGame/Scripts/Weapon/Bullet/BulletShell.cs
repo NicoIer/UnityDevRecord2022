@@ -1,6 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using DungeonGame.Scripts;
+using Nico;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
