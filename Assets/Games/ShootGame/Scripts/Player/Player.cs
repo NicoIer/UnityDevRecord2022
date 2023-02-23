@@ -12,8 +12,8 @@ namespace ShootGame
         public PlayerInput input { get; private set; }
         public PlayerStateMachine machine { get; private set; }
         [field: SerializeField] public PlayerAttribute attribute { get; private set; }
-        // public Weapon primaryWeapon;
-        // public Weapon secondaryWeapon;
+        public Weapon primaryWeapon;
+        public Weapon secondaryWeapon;
         [field: SerializeField] public PlayerData data { get; private set; }
 
         protected override void _get_mono_components()
@@ -22,8 +22,8 @@ namespace ShootGame
             // nac = GetComponent<NetworkAnimator>();
             rb = GetComponent<Rigidbody2D>();
 
-            // primaryWeapon = transform.Find("primaryWeapon").GetComponent<Weapon>();
-            // secondaryWeapon = transform.Find("secondaryWeapon").GetComponent<Weapon>();
+            primaryWeapon = transform.Find("primaryWeapon").GetComponent<Weapon>();
+            secondaryWeapon = transform.Find("secondaryWeapon").GetComponent<Weapon>();
         }
 
         protected override void _init_components()
@@ -38,6 +38,8 @@ namespace ShootGame
         {
             machine = new PlayerStateMachine(this);
             AddController(machine);
+            var weaponSwitchController = new WeaponSwitchController(this);
+            AddController(weaponSwitchController);
         }
     }
 }

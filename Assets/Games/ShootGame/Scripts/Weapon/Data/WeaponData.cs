@@ -8,12 +8,18 @@ namespace ShootGame
     [CreateAssetMenu(fileName = "WeaponData", menuName = "ShootGame/WeaponData", order = 0)]
     public class WeaponData : DataContainer
     {
+        //通过metaID查询枪械数据
+        public int metaID;
         public WeaponDataMeta meta;
-        //武器数据应该有其攻击动画通过id查找对应的动画数据 
-        private AnimStorage storage;
-
+        //通过ID查询其动画帧图像数据
         public AnimStorage animSprites=>DataTableManager.instance.animDataTable.GetByIdx(meta.animStorageID);
-        public Vector3 rightPostion;
-        public Vector3 leftPostion;
+        public GameObject bulletPrefab;
+        public GameObject shellPrefab;
+        public Vector2 fireAngel;//发射角度
+        public Vector3 firePostion;//子弹发射位置
+        public Vector3 clipPostion;//弹夹位置
+        
+        public Vector3 rightPostion;//武器面朝右边的位置
+        public Vector3 leftPostion;//武器面朝左边的位置
     }
 }

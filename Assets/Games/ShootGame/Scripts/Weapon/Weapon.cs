@@ -12,6 +12,8 @@ namespace ShootGame
         public SpriteRenderer baseRe { get; private set; }
         public SpriteRenderer gunRe { get; private set; }
         public WeaponData data;
+
+        public Vector3 worldPosition => transform.position;
         protected override void _get_mono_components()
         {
             player = GetComponentInParent<Player>();
@@ -31,6 +33,13 @@ namespace ShootGame
             AddController(acController);
             var positionController = new PositionController(this);
             AddController(positionController);
+            var shootController = new ShootController(this);
+            AddController(shootController);
+        }
+
+        public void SetActive(bool active)
+        {
+            gameObject.SetActive(active);
         }
     }
 }

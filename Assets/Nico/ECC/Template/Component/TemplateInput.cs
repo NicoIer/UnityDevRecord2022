@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Nico.ECC.Template
 {
@@ -9,7 +10,8 @@ namespace Nico.ECC.Template
         public Vector2 move => controls.Player.Move.ReadValue<Vector2>();
         public bool rightAttack => controls.Player.NormalAttack.triggered;
         public bool leftAttack => controls.Player.SpecialAttack.triggered;
-        
+        public Vector2 mousePostion => Mouse.current.position.ReadValue();
+        public Vector2 arrow => controls.Player.Arrow.ReadValue<Vector2>();
         public TemplateInput(T owner)
         {
             this.owner = owner;

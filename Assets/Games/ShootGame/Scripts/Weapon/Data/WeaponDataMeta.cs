@@ -10,5 +10,6 @@ namespace ShootGame
         public string name;
         public int animStorageID;
         public float attackInterval;
+        public int type;
     }
 }

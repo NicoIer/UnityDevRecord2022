@@ -9,6 +9,8 @@ namespace ShootGame
     public class WeaponAnimController : TemplateController<Weapon>
     {
         private bool attackOver = true;
+        private bool canAttack = true;
+        
         private static readonly int Attack = Animator.StringToHash("attack");
         private AnimationEventHandler eventHandler => owner.acEventHandler;
         private Player player => owner.player;
@@ -81,7 +83,7 @@ namespace ShootGame
             {
                 gunRe.flipX = false;
             }
-
+            //ToDo 小问题: 攻击结束 != 动画结束  此处应该设置要可以进行攻击才能攻击 而非 attackOver 应该使用计时器 当attackOver时开始计时 计时完毕后才能开始下一次攻击
             if (player.input.rightAttack && attackOver)
             {
                 attackOver = false;
