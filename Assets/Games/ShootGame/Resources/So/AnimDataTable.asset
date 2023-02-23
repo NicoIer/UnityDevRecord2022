@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bbef32b40e43528005ef65c6d99641, type: 3}
+  m_Name: AnimDataTable
+  m_EditorClassIdentifier: 
+  dataList:
+  - sprites:
+    - {fileID: 2057852590, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -757404427, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -1001111337, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+  - sprites:
+    - {fileID: -1896531390, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -292714819, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: 1334614792, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+  - sprites:
+    - {fileID: 1095998680, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: 2127887221, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -1328459440, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+  - sprites:
+    - {fileID: 1975581260, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: 786156058, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: 1781906024, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+  - sprites:
+    - {fileID: 826308808, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -804214198, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -15231613, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+  - sprites:
+    - {fileID: 841935665, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: 1529961669, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: 1748413373, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+  - sprites:
+    - {fileID: -720617244, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -1497900733, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: 2005356800, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+  - sprites:
+    - {fileID: 1489804141, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -364252266, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
+    - {fileID: -1164371331, guid: e65f1f078f516bc4c98b037d38697fb0, type: 3}
