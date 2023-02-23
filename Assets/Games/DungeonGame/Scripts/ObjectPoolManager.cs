@@ -7,7 +7,6 @@ namespace Games.DungeonGame.Scripts
     public class ObjectPoolManager : MonoBehaviour
     {
         public static ObjectPoolManager instance;
-
         [field: SerializeReference]
         private Dictionary<string, ObjectPool> poolDict = new Dictionary<string, ObjectPool>();
 

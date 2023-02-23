@@ -9,6 +9,8 @@ namespace Nico.ECC.Template
         protected readonly NormalControls controls;
         public Vector2 move => controls.Player.Move.ReadValue<Vector2>();
         public bool rightAttack => controls.Player.NormalAttack.triggered;
+        public bool performRightAttack => controls.Player.NormalAttack.WasPerformedThisFrame();
+        public bool releaseRightAttack => controls.Player.NormalAttack.WasReleasedThisFrame();
         public bool leftAttack => controls.Player.SpecialAttack.triggered;
         public Vector2 mousePostion => Mouse.current.position.ReadValue();
         public Vector2 arrow => controls.Player.Arrow.ReadValue<Vector2>();

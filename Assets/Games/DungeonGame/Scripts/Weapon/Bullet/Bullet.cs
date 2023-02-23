@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,13 +11,13 @@ namespace Games.DungeonGame.Scripts.Weapon
         private Rigidbody2D rb;
         private Collider2D collider;
         public float deadTime = 5;
-
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             collider = GetComponent<Collider2D>();
         }
 
+        private CancellationTokenSource cancellationTokenSource;
         /// <summary>
         /// 子弹被射出时的行为
         /// </summary>
@@ -31,11 +32,28 @@ namespace Games.DungeonGame.Scripts.Weapon
             var angel = Random.Range(-5, 5);
 
             rb.velocity = Quaternion.AngleAxis(angel, Vector3.forward) * velocity;
-
-            UniTask.Delay(TimeSpan.FromSeconds(deadTime)).ContinueWith(() =>
+            cancellationTokenSource = new CancellationTokenSource();
+            UniTask.Delay(TimeSpan.FromSeconds(deadTime),cancellationToken: cancellationTokenSource.Token)
+                .ContinueWith(() =>
             {
                 ObjectPoolManager.instance.ReturnObject("bullet", gameObject);
             }).Forget();
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Bullet"))
+            {
+                return;
+            }
+            if(cancellationTokenSource != null)
+                cancellationTokenSource.Cancel();
+            Debug.Log(col.name);
+            var effect = ObjectPoolManager.instance.GetObject("effect");
+            var transform1 = transform;
+            effect.transform.position = transform1.position;
+            effect.transform.rotation = transform1.rotation;
+            ObjectPoolManager.instance.ReturnObject("bullet", gameObject);
         }
     }
 }

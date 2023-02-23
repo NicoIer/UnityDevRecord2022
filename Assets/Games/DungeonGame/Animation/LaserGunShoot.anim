@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: gun-idle
+  m_Name: LaserGunShoot
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1458201870, guid: 82a2a99f8c07d6741b8fcf6b77973d5c, type: 3}
+      value: {fileID: -2001063446, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
+    - time: 0.15
+      value: {fileID: 1988965485, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
+    - time: 0.3
+      value: {fileID: 1961151125, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
+    - time: 0.43333334
+      value: {fileID: -1147189188, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
+    - time: 0.5833333
+      value: {fileID: 1656449671, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,13 +52,17 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1458201870, guid: 82a2a99f8c07d6741b8fcf6b77973d5c, type: 3}
+    - {fileID: -2001063446, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
+    - {fileID: 1988965485, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
+    - {fileID: 1961151125, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
+    - {fileID: -1147189188, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
+    - {fileID: 1656449671, guid: 5182546bdecef7441b5e01cdecb344b1, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 0.59999996
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
