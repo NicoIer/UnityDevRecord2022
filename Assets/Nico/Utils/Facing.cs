@@ -6,7 +6,11 @@ namespace Nico.Utils
     {
         public static void Facing2DDirection(Transform transform,Vector2 direction)
         {
-            if (direction.x < 0)
+            if (direction == Vector2.zero)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if (direction.x < 0)
             {
                 transform.localScale = new Vector3(1, -1, 1);
             }

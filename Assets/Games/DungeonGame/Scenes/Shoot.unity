@@ -150,7 +150,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 07f854b010981a74897ea361b8b1a6fc, type: 2}
+      objectReference: {fileID: 2100000, guid: 67cbfef59d1466140b1cd1ef794e4423, type: 2}
     - target: {fileID: 1994323218770277061, guid: cf5ac847779171b48baa1c48daf51530,
         type: 3}
       propertyPath: m_Name
@@ -7760,7 +7760,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3b39f9f0f6960e54d8ab5ab666cd9958, type: 2}
+  - {fileID: 2100000, guid: 67cbfef59d1466140b1cd1ef794e4423, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7783,7 +7783,7 @@ LineRenderer:
   m_SortingOrder: 2
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 5, y: 0, z: 0}
+  - {x: 10.3, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

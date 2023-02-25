@@ -40,7 +40,7 @@ namespace DungeonGame
             base.Update();
             if (input.rightAttack && canShoot)
             {
-                var direction = input.rightStick;
+                var direction = input.rightStick.normalized;
                 if (direction == Vector2.zero)
                 {
                     direction = Vector2.right;
